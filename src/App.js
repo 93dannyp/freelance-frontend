@@ -1,24 +1,24 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import ContactList from './components/ContactList'
+
+let baseURL = 'http://localhost:3003/api/contacts/'
+
+// TODO make sure this logic works with connecting baseURL
+//  if (process.env.NODE_ENV === 'development') {
+//    baseURL = 'http://localhost:3003'
+//  } else {
+//    baseURL = 'deployment backend here'
+//  }
+// console.log('Current base URL:', baseURL)
 
 function App() {
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>freelance crm</h1>
+      <ContactList />
     </div>
   );
 }
