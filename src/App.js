@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import ContactList from './components/ContactList'
 
-let baseURL = 'http://localhost:3003/api/contacts/'
+let baseURL = 'http://localhost:3003'
 
 // TODO make sure this logic works with connecting baseURL
 //  if (process.env.NODE_ENV === 'development') {

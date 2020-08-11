@@ -17,16 +17,16 @@ handleChange = (event) => {
 
 handleSubmit = (event) => {
     event.preventDefault()
-    console.log(this.props.baseURL)
     fetch(this.props.baseURL + '/api/contacts/', {
+        crossDomain: true,
         method: 'POST',
-        body: JSON.stringify(this.state),
         headers: {
             'Content-Type': 'application/json'
-        }
+        },
+        body: JSON.stringify(this.state),
+        
     }).then((res) => {
         res.json()
-    console.log(res)
     })
     .then(resJson => {
         this.props.handleAddContact(resJson)
