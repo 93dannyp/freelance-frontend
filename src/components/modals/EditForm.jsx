@@ -1,13 +1,27 @@
 import React from 'react'
+import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button'
+
+
+
 const baseURL = 'http://localhost:3003'
 
 class EditForm extends React.Component {
+    // state = {
+    //     firstName: '',
+    //     lastName: '',
+    //     phoneNumber: '',
+    //     email: '',
+    //     img: '',
+    // }
+
     state = {
-        firstName: '',
-        lastName: '',
-        phoneNumber: '',
-        email: '',
-        img: '',
+        id: this.props.contactBeingEdited.id,
+        firstName: this.props.contactBeingEdited.firstName,
+        lastName: this.props.contactBeingEdited.lastName,
+        phoneNumber: this.props.contactBeingEdited.phoneNumber,
+        email: this.props.contactBeingEdited.email,
+        img: this.props.contactBeingEdited.img,
     }
 
     handleChange = (event) => {
@@ -17,39 +31,39 @@ class EditForm extends React.Component {
         })
     }
 
-    componentDidMount() {
-        this.setState({
-            firstName: this.props.contactBeingEdited.firstName,
-            lastName: this.props.contactBeingEdited.lastName,
-            phoneNumber: this.props.contactBeingEdited.phoneNumber,
-            email: this.props.contactBeingEdited.email,
-            img: this.props.contactBeingEdited.img,
-        })
+    // componentDidMount() {
+    //     this.setState({
+    //         firstName: this.props.contactBeingEdited.firstName,
+    //         lastName: this.props.contactBeingEdited.lastName,
+    //         phoneNumber: this.props.contactBeingEdited.phoneNumber,
+    //         email: this.props.contactBeingEdited.email,
+    //         img: this.props.contactBeingEdited.img,
+    //     })
         
-    }
+    // }
 
     render () {
         return (
             <div>
-               <h2>New Contact</h2> 
-                <form onSubmit={(event) => {this.updateContact(event, this.state)}}>
-                    <label htmlFor='img'></label>
-                    <input type='text' id='img' name='img' onChange={this.handleChange} value={this.state.img} />
+               <h2>Edit Contact</h2> 
+                <Form onSubmit={(event) => {this.props.updateContact(event, this.state)}}>
+                    <Form.Label htmlFor='img'></Form.Label>
+                    <Form.Control type='text' id='img' name='img' onChange={this.handleChange} value={this.state.img} />
 
-                    <label htmlFor='firstName'></label>
-                    <input type='text' id='firstName' name='firstName' onChange={this.handleChange} value={this.state.firstName} />
+                    <Form.Label htmlFor='firstName'></Form.Label>
+                    <Form.Control type='text' id='firstName' name='firstName' onChange={this.handleChange} value={this.state.firstName} />
 
-                    <label htmlFor='lastName'></label>
-                    <input type='text' id='lastName' name='lastName' onChange={this.handleChange} value={this.state.lastName} />
+                    <Form.Label htmlFor='lastName'></Form.Label>
+                    <Form.Control type='text' id='lastName' name='lastName' onChange={this.handleChange} value={this.state.lastName} />
 
-                    <label htmlFor='phoneNumber'></label>
-                    <input type='text' id='phoneNumber' name='phoneNumber' onChange={this.handleChange} value={this.state.phoneNumber} />
+                    <Form.Label htmlFor='phoneNumber'></Form.Label>
+                    <Form.Control type='tel' id='phoneNumber' name='phoneNumber' onChange={this.handleChange} value={this.state.phoneNumber} />
 
-                    <label htmlFor='email'></label>
-                    <input type='text' id='email' name='email' onChange={this.handleChange} value={this.state.email} />
+                    <Form.Label htmlFor='email'></Form.Label>
+                    <Form.Control type='email' id='email' name='email' onChange={this.handleChange} value={this.state.email} />
 
-                    <input type='submit' value='Done'/>
-                </form>
+                    <Button type='submit' value='Done'>Done</Button>
+                </Form>
             </div>
         )
     }

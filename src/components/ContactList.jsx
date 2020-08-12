@@ -1,6 +1,12 @@
 import React, { Component } from 'react'
 import NewContact from './modals/NewContact'
 import EditForm from './modals/EditForm'
+import Container from 'react-bootstrap/Container'
+import Card from 'react-bootstrap/Card'
+import ListGroup from 'react-bootstrap/ListGroup'
+import ListGroupItem from 'react-bootstrap/ListGroupItem'
+import ButtonToolbar from 'react-bootstrap/ButtonToolbar'
+import Button from 'react-bootstrap/Button'
 
 
 const baseURL = 'http://localhost:3003'
@@ -44,30 +50,16 @@ class ContactList extends Component {
     }
 
     editContact = (contact) => {
-        console.log('console.log for contact is', contact)
-        console.log('contact id is', contact.id)
-        fetch(baseURL+ '/api/contacts/' + contact.id + '/edit', {
-            crossDomain: true,
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-        .then(res => {
-            console.log(res)
-            res.json()
-        })
-        .then(data => {
-            console.log(data)
-            this.setState({
-                contactBeingEdited: data.data,
-                idOfContactToEdit: data.data.id
-            })
+        console.log(contact)
+        this.setState({
+            contactBeingEdited: contact,
+            idOfContactToEdit: contact.id
         })
     }
+    
 
     updateContact = (event, contact) => {
-        event.preventDefault()
+        console.log(contact)
         console.log('updated contact,', contact)
         fetch(baseURL + '/api/contacts/' + contact.id, {
             method: 'PUT',
@@ -76,14 +68,32 @@ class ContactList extends Component {
                 'Content-Type': 'application/json'
             }
         })
-        .then(()=>{
-            this.getContacts()
+        .then((data)=>{
+            console.log(data.dataValues)
+            return data.json()
+        }).then(data => {
+            this.handleAddContact(data)
             this.setState({
-                idOfContactToEdit: -1
+                idOfContactToEdit: -1,
+                contacts: data,
             })
-        }).catch((err) => {console.log(err)})
+        })
+        .catch((err) => {
+            console.log(err)
+        })
     }
 
+
+    // fetch(baseURL + '/api/contacts/')
+    //     .then(
+    //         data => {
+    //             return data.json()
+    //         })
+    //     .then(data => {
+    //         this.setState({
+    //             contacts: data,
+    //         })
+    //     })
 
     deleteContact = (id) => {
         console.log(baseURL)
@@ -110,23 +120,36 @@ class ContactList extends Component {
     render () {
         return (
             <div>
-                <h2>Contacts</h2>
-                <div onClick={ () => {
+                {/* <Jumbotron> */}
+                    <h2>Contacts</h2>
+                {/* </Jumbotron> */}
+
+                {this.state.idOfContactToEdit !== -1 ? <EditForm updateContact={this.updateContact} editContact={this.editContact} idOfContactToEdit={this.state.idOfContactToEdit} contactBeingEdited={this.state.contactBeingEdited} /> : null }
+
+                <Button onClick={ () => {
                     this.showNewContactForm()
-                }}>+</div>
+                }}> + </Button>
+
                 {this.state.show ? <NewContact baseURL={this.state.baseURL} handleAddContact={this.handleAddContact} /> : 
                 <div>
                     {this.state.contacts.map(contact => {
                         return (
+                            <ListGroup>
                             <div key={contact.id}>
-                                <div>{contact.firstName}</div>
-                                <div>{contact.lastName}</div>
-                                <div>{contact.phoneNumber}</div>
-                                <div>{contact.email}</div>
-                                <div onClick={()=>this.editContact(contact)}>EDIT</div>
-                                <div onClick={()=>this.deleteContact(contact.id)}>X</div>
+                                <ListGroupItem>{contact.firstName}</ListGroupItem>
+                                <ListGroupItem>{contact.lastName}</ListGroupItem>
+                                <ListGroupItem>{contact.phoneNumber}</ListGroupItem>
+                                <ListGroupItem>{contact.email}</ListGroupItem>
+                                <ButtonToolbar>
+                                    <>
+                                    <Button onClick={()=>this.editContact(contact)}>Edit</Button>
+                                    </>
+                                    <>
+                                    <Button onClick={()=>this.deleteContact(contact.id)}>X</Button>
+                                    </>
+                                </ButtonToolbar>
                             </div>
-                                
+                            </ListGroup>   
                         )
                     })}
                 </div>
@@ -135,7 +158,7 @@ class ContactList extends Component {
                 } 
 {/* ////end of ternery statement//// */}
                 
-              {this.state.idOfContactToEdit !== -1 ? <EditForm updateContact={this.updateContact} editContact={this.editContact} idOfContactToEdit={this.state.idOfContactToEdit} contactBeingEdited={this.state.contactBeingEdited} /> : null }
+              
             </div>
         )
     }

@@ -1,6 +1,10 @@
 import React from 'react';
 import './App.css';
 import ContactList from './components/ContactList'
+import Container from 'react-bootstrap/Container'
+import Jumbotron from 'react-bootstrap/Jumbotron'
+import Media from 'react-bootstrap/Media'
+
 
 let baseURL = 'http://localhost:3003'
 
@@ -16,10 +20,20 @@ function App() {
 
 
   return (
+   
     <div className="App">
-      <h1>freelance crm</h1>
-      <ContactList />
+      
+      <Jumbotron>
+        <h1 className='header'>freelance crm</h1>
+      </Jumbotron>
+      <Container className='p-3'>
+        <Media>
+        <ContactList />
+        </Media>
+        
+      </Container>
     </div>
+  
   );
 }
 
