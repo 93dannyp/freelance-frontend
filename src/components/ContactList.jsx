@@ -13,25 +13,25 @@ const baseURL = 'http://localhost:3003'
 
 class ContactList extends Component {
     state = {
-        contacts: [],
+        contacts: this.props.contacts,
         show: false,
         baseURL: baseURL,
         contactBeingEdited: null,
         idOfContactToEdit: -1
     }
 
-    getContacts = () => {
-        fetch(baseURL + '/api/contacts/')
-        .then(
-            data => {
-                return data.json()
-            })
-        .then(data => {
-            this.setState({
-                contacts: data,
-            })
-        })
-    }
+    // getContacts = () => {
+    //     fetch(baseURL + '/api/contacts/')
+    //     .then(
+    //         data => {
+    //             return data.json()
+    //         })
+    //     .then(data => {
+    //         this.setState({
+    //             contacts: data,
+    //         })
+    //     })
+    // }
 
     showNewContactForm = () => {
         this.setState({
@@ -42,7 +42,6 @@ class ContactList extends Component {
     handleAddContact = (contact) => {
         const copyContacts = [...this.state.contacts]
         copyContacts.unshift(contact)
-        
         this.setState({
             contacts: copyContacts,
             show: false
@@ -56,7 +55,6 @@ class ContactList extends Component {
             idOfContactToEdit: contact.id
         })
     }
-    
 
     updateContact = (event, contact) => {
         console.log(contact)
@@ -113,9 +111,7 @@ class ContactList extends Component {
         })
     }
 
-    componentDidMount(){
-        this.getContacts()
-      }
+    
 
     render () {
         return (
