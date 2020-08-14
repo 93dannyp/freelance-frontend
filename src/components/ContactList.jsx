@@ -1,19 +1,62 @@
 import React, { Component } from 'react'
 import NewContact from './modals/NewContact'
 import EditForm from './modals/EditForm'
-import Container from 'react-bootstrap/Container'
-import Card from 'react-bootstrap/Card'
-import ListGroup from 'react-bootstrap/ListGroup'
-import ListGroupItem from 'react-bootstrap/ListGroupItem'
-import ButtonToolbar from 'react-bootstrap/ButtonToolbar'
-import Button from 'react-bootstrap/Button'
+import styled from 'styled-components'
 
 
 const baseURL = 'http://localhost:3003'
 
+
+const StyledContactList = styled.ul`
+    width: 90%;
+    margin: 50px;
+    padding: 5px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    background: rgba(240,240,240, .5);
+    color: rgb(56,56,56);
+    margin: 5px auto;
+    border-radius: 10px;
+`
+const StyledContactListItems = styled.li`
+    display: flex;
+    padding: 10px 20px;
+    color: rgb(56,56,56);
+    margin: 5px 0;
+    transition: 0.3s
+`
+const Content = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+`
+
+const Utilities = styled.div`
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+`
+
+const Header = styled.header`
+    display: flex:
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    align: items: baseline;
+    margin 5px 0;
+    padding: 10px 20px;
+    color: #fff;
+    font-weight: 500;
+`
+const Title = styled.p`
+    width: 100px;
+    padding: 5px;
+    box-sizing: border-box;
+    margin: 0;
+`
+
 class ContactList extends Component {
     state = {
-        contacts: this.props.contacts,
         show: false,
         baseURL: baseURL,
         contactBeingEdited: null,
@@ -39,14 +82,14 @@ class ContactList extends Component {
         })
     }
 
-    handleAddContact = (contact) => {
-        const copyContacts = [...this.state.contacts]
-        copyContacts.unshift(contact)
-        this.setState({
-            contacts: copyContacts,
-            show: false
-        })
-    }
+    // handleAddContact = (contact) => {
+    //     const copyContacts = [...this.state.contacts]
+    //     copyContacts.unshift(contact)
+    //     this.setState({
+    //         contacts: copyContacts,
+    //         show: false
+    //     })
+    // }
 
     editContact = (contact) => {
         console.log(contact)
@@ -104,8 +147,8 @@ class ContactList extends Component {
             },
         }).then(res => {
             console.log(res)
-            const findIndex = this.state.contacts.findIndex(contact => contact.id === id)
-            const copyContacts = [...this.state.contacts]
+            const findIndex = this.props.contacts.findIndex(contact => contact.id === id)
+            const copyContacts = [...this.props.contacts]
             copyContacts.splice(findIndex, 1)
             this.setState({contacts: copyContacts})
         })
@@ -116,36 +159,37 @@ class ContactList extends Component {
     render () {
         return (
             <div>
-                {/* <Jumbotron> */}
-                    <h2>Contacts</h2>
-                {/* </Jumbotron> */}
+        
 
                 {this.state.idOfContactToEdit !== -1 ? <EditForm updateContact={this.updateContact} editContact={this.editContact} idOfContactToEdit={this.state.idOfContactToEdit} contactBeingEdited={this.state.contactBeingEdited} /> : null }
 
-                <Button onClick={ () => {
-                    this.showNewContactForm()
-                }}> + </Button>
+                
 
-                {this.state.show ? <NewContact baseURL={this.state.baseURL} handleAddContact={this.handleAddContact} /> : 
-                <div>
-                    {this.state.contacts.map(contact => {
+                {this.state.show ? <NewContact baseURL={this.state.baseURL} handleAddContact={this.props.handleAddContact} /> : 
+            <div >
+                <Header>
+                <Title>Contacts</Title>
+                <button onClick={ () => {
+                    this.showNewContactForm()
+                }}> + </button>
+                </Header>
+                    {this.props.contacts.map(contact => {
                         return (
-                            <ListGroup>
-                            <div key={contact.id}>
-                                <ListGroupItem>{contact.firstName}</ListGroupItem>
-                                <ListGroupItem>{contact.lastName}</ListGroupItem>
-                                <ListGroupItem>{contact.phoneNumber}</ListGroupItem>
-                                <ListGroupItem>{contact.email}</ListGroupItem>
-                                <ButtonToolbar>
-                                    <>
-                                    <Button onClick={()=>this.editContact(contact)}>Edit</Button>
-                                    </>
-                                    <>
-                                    <Button onClick={()=>this.deleteContact(contact.id)}>X</Button>
-                                    </>
-                                </ButtonToolbar>
-                            </div>
-                            </ListGroup>   
+                        
+                          
+                            <StyledContactList key={contact.id}>
+                                <Content>
+                                <StyledContactListItems>{contact.firstName} {contact.lastName}</StyledContactListItems>
+                                <StyledContactListItems>{contact.phoneNumber}</StyledContactListItems>
+                                <StyledContactListItems>{contact.email}</StyledContactListItems>
+                                </Content>
+                                <Utilities>
+                                    <button onClick={()=>this.editContact(contact)}>Edit</button>
+                                    <button onClick={()=>this.deleteContact(contact.id)}>X</button>
+                                </Utilities>
+                            </StyledContactList>
+                            
+                        
                         )
                     })}
                 </div>

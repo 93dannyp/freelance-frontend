@@ -1,17 +1,12 @@
-import React from 'react'
-import Form from 'react-bootstrap/Form'
-import Button from 'react-bootstrap/Button'
+import React, { Component } from 'react'
+import styled from 'styled-components'
+
 
 class NewProject extends React.Component {
     state = {
         projectTitle: '',
         projectDescription: '',
         projectDueDate: '',
-        contacts: [
-            {
-            contactId: 1,
-            firstName: 'daniel',
-            lastName: 'perkins'}],
         contactId: ''
     }
 
@@ -45,31 +40,31 @@ handleSubmit = () => {
 
     render () {
 
-        const options = this.state.contacts.map((contact, index)=>{
+        const options = this.props.contacts.map((contact, index)=>{
             return (
-                <option value={contact.contactId}  key={index}> {contact.firstName} {contact.lastName}</option>
+                <option value={contact.id}  key={index}> {contact.firstName} {contact.lastName}</option>
             )
         })
         return (
             <div>
                <h2>New Project</h2> 
                 <form onSubmit={this.handleSubmit}>
-                    <Form.Label htmlFor='contactId'></Form.Label>
-                    <Form.Control as='select' id='contactId' name='contactId' onChange={this.handleChange} value={this.state.contactId} placeholder='Contact'>
-                    <option value=''>Choose a Contact</option>
+                    <label htmlFor='contactId'></label>
+                    <select as='select' id='contactId' name='contactId' onChange={this.handleChange} value={this.state.contactId} placeholder='Contact'>
+                    <option value=''>Choose a contact</option>
                        {options}
-                    </Form.Control>
+                    </select>
 
-                    <Form.Label htmlFor='projectTitle'></Form.Label>
-                    <Form.Control type='text' id='projectTitle' name='projectTitle' onChange={this.handleChange} value={this.state.projectTitle} placeholder='Title'/>
+                    <label htmlFor='projectTitle'></label>
+                    <input type='text' id='projectTitle' name='projectTitle' onChange={this.handleChange} value={this.state.projectTitle} placeholder='Title'/>
 
-                    <Form.Label htmlFor='projectDescription'></Form.Label>
-                    <Form.Control type='textarea' id='projectDescription' name='projectDescription' onChange={this.handleChange} value={this.state.projectDescription} placeholder='Description'/>
+                    <label htmlFor='projectDescription'></label>
+                    <input type='textarea' rows='3' id='projectDescription' name='projectDescription' onChange={this.handleChange} value={this.state.projectDescription} placeholder='Description'/>
 
-                    <Form.Label htmlFor='projectDueDate'></Form.Label>
-                    <Form.Control type='text' id='projectDueDate' name='projectDueDate' onChange={this.handleChange} value={this.state.projectDueDate} placeholder='Due Date'/>
+                    <label htmlFor='projectDueDate'></label>
+                    <input type='text' id='projectDueDate' name='projectDueDate' onChange={this.handleChange} value={this.state.projectDueDate} placeholder='Due Date'/>
 
-                    <Button type='submit' value='Done'>Done</Button>
+                    <button type='submit' value='Done'>Done</button>
                 </form>
             </div>
         )

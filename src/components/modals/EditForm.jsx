@@ -1,12 +1,10 @@
 import React from 'react'
-import Form from 'react-bootstrap/Form'
-import Button from 'react-bootstrap/Button'
 
 
 
 const baseURL = 'http://localhost:3003'
 
-class EditForm extends React.Component {
+class Editform extends React.Component {
     // state = {
     //     firstName: '',
     //     lastName: '',
@@ -46,24 +44,24 @@ class EditForm extends React.Component {
         return (
             <div>
                <h2>Edit Contact</h2> 
-                <Form onSubmit={(event) => {this.props.updateContact(event, this.state)}}>
-                    <Form.Label htmlFor='img'></Form.Label>
-                    <Form.Control type='text' id='img' name='img' onChange={this.handleChange} value={this.state.img} />
+                <form onSubmit={(event) => {this.props.updateContact(event, this.state)}}>
+                    <label htmlFor='img'></label>
+                    <input type='text' id='img' name='img' onChange={this.handleChange} value={this.state.img} />
 
-                    <Form.Label htmlFor='firstName'></Form.Label>
-                    <Form.Control type='text' id='firstName' name='firstName' onChange={this.handleChange} value={this.state.firstName} />
+                    <label htmlFor='firstName'></label>
+                    <input type='text' id='firstName' name='firstName' onChange={this.handleChange} value={this.state.firstName} />
 
-                    <Form.Label htmlFor='lastName'></Form.Label>
-                    <Form.Control type='text' id='lastName' name='lastName' onChange={this.handleChange} value={this.state.lastName} />
+                    <label htmlFor='lastName'></label>
+                    <input type='text' id='lastName' name='lastName' onChange={this.handleChange} value={this.state.lastName} />
 
-                    <Form.Label htmlFor='phoneNumber'></Form.Label>
-                    <Form.Control type='tel' id='phoneNumber' name='phoneNumber' onChange={this.handleChange} value={this.state.phoneNumber} />
+                    <label htmlFor='phoneNumber'></label>
+                    <input type='tel' id='phoneNumber' name='phoneNumber' onChange={this.handleChange} value={this.state.phoneNumber} />
 
-                    <Form.Label htmlFor='email'></Form.Label>
-                    <Form.Control type='email' id='email' name='email' onChange={this.handleChange} value={this.state.email} />
+                    <label htmlFor='email'></label>
+                    <input type='email' id='email' name='email' onChange={this.handleChange} value={this.state.email} />
 
-                    <Button type='submit' value='Done'>Done</Button>
-                </Form>
+                    <button type='submit' value='Done'>Done</button>
+                </form>
             </div>
         )
     }
@@ -71,4 +69,4 @@ class EditForm extends React.Component {
 }
 
 
-export default EditForm
+export default Editform

@@ -1,38 +1,117 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+body {
+  margin: 0;
+  padding: 0;
+  background: white;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+ul {
+  list-style: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+li {
+  float: left;
+}
+ 
+a,
+button {
+  color: inherit;
+}
+ 
+a {
+  text-decoration: none;
+}
+ 
+button {
+  background: none;
+  cursor: pointer;
+}
+ 
+input {
+  -webkit-appearance: none;
+}
+ 
+button,
+input {
+  border: none;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+
+.header {
+  grid-area: header;
+  
+  margin:0 auto;
+  color: rgb(56,56,56);
+}
+.grid-sidebar {
+  grid-area: sidebar;
+  align-self: start;
+  justify-items: start;
+
+}
+.content {
+  grid-area: main;
+}
+
+.contact-list {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  grid-column-start: 3;
+  grid-column-end: 6;
+  grid-row-start: 2;
+  grid-row-end: 3;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  background-color: rgb(196, 196, 250);
+  overflow: auto;
 }
 
-.App-link {
-  color: #61dafb;
+.contact-list:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.project-list {
+  grid-column-start: 3;
+  grid-column-end: 6;
+  grid-row-start: 3;
+  grid-row-end: 4;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+
+  background-color: rgb(195, 221, 182);
+  overflow: auto;
+}
+
+.project-list:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.container {
+  display: grid;
+
+  grid-template-columns: [first] 25% [end];
+  grid-template-rows: [row1-start] 50px [row2-start] 400px [row3-start] 400px [row4-start] 400px [last-line];
+  row-gap: 25px;
+
+  grid-template-areas:
+
+  "sidebar header header header"
+  "sidebar main main main"
+  "sidebar main main main"
+  "sidebar main main main";
+
+  /* grid-container height = 100% of viewport height */
+  /* height: 100vh; */
+  /* @media screen and (max-width: 375px) {
+    .grid-container {
+      grid-template-columns: 1fr;
+      grid-template-rows: 72px 72px 72px 1fr;
+      grid-template-areas:
+      "head"
+      "main";
+    } */
+  /* } */
 }

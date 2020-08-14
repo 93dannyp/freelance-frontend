@@ -2,11 +2,9 @@ import React, { Component } from 'react';
 import './App.css';
 import ContactList from './components/ContactList'
 import ProjectList from './components/ProjectList'
-import Container from 'react-bootstrap/Container'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
-import Jumbotron from 'react-bootstrap/Jumbotron'
-import Media from 'react-bootstrap/Media'
+import SideBar from './components/Sidebar'
+import Header from './components/Header'
+
 
 
 let baseURL = 'http://localhost:3003'
@@ -20,11 +18,12 @@ let baseURL = 'http://localhost:3003'
 // console.log('Current base URL:', baseURL)
 
 
-
 class App extends Component {
   state = {
-    contacts: []
+    contacts: [],
+    projects: []
   }
+  // Fetching contact data from back end
   getContacts = () => {
         fetch(baseURL + '/api/contacts/')
         .then(
@@ -37,40 +36,70 @@ class App extends Component {
             })
         })
     }
+    // adding contact data to contacts array
+    // setting state to new array that contains contact data
+    handleAddContact = (contact) => {
+      const copyContacts = [...this.state.contacts]
+      copyContacts.unshift(contact)
+      this.setState({
+          contacts: copyContacts,
+          show: false
+      })
+  }
+
+    // fetching project data from back end
+    getProjects = () => {
+      fetch(baseURL + '/api/projects/')
+      .then(
+          data => {
+              return data.json()
+          })
+      .then(data => {
+          this.setState({
+              projects: data,
+          })
+      })
+  }
+
+    // adding project data to projects array
+    // setting state to new array that contains project data
+    handleAddProject = (project) => {
+      const copyProjects = [...this.state.projects]
+      copyProjects.unshift(project)
+      this.setState({
+          projects: copyProjects,
+          show: false
+      })
+  }
 
     componentDidMount(){
       this.getContacts()
+      this.getProjects()
     }
-    
+
   render () {
-  return (
-   
-    <div className="App">
+    return (
+    
+      <div className="App">
+        
+        <div className='container'>
+        
+        <SideBar className='grid-sidebar'/>
+            
+        {/* <Header className='header'/> */}
+      <div className='header'>
+        <h2>freelance CRM</h2>
+        </div>
+               <div className='contact-list'>
+        <ContactList  handleAddContact={this.handleAddContacts} getContacts={this.getContacts} contacts={this.state.contacts} />
+        </div>
+        <div className='project-list'>
+        <ProjectList  contacts={this.state.contacts} projects={this.state.projects}/>
+        </div>
       
-      <Jumbotron>
-        <h1 className='header'>freelance crm</h1>
-      </Jumbotron>
-      <Container className='p-3'>
-        <Row>
-          <Col>
-            <Media>
-              <Media.Body>
-                <ContactList getContacts={this.getContacts} contacts={this.state.contacts}/>
-              </Media.Body>
-            </Media>
-          </Col>
-          <Col>
-            <Media>
-              <Media.Body>
-                <ProjectList />
-              </Media.Body>
-            </Media>
-          </Col>
-        </Row>
-      </Container>
-    </div>
-  
-  )
+        </div>
+      </div>
+    )
   }
 }
 

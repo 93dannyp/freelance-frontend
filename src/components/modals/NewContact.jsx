@@ -1,6 +1,6 @@
 import React from 'react'
-import Form from 'react-bootstrap/Form'
-import Button from 'react-bootstrap/Button'
+import styled from 'styled-components'
+
 
 class NewContact extends React.Component {
     state = {
@@ -46,22 +46,22 @@ handleSubmit = () => {
             <div>
                <h2>New Contact</h2> 
                 <form onSubmit={this.handleSubmit}>
-                    <Form.Label htmlFor='img'></Form.Label>
+                    <label htmlFor='img'></label>
                     <input type='text' id='img' name='img' onChange={this.handleChange} value={this.state.img} placeholder='add photo'/>
 
-                    <Form.Label htmlFor='firstName'></Form.Label>
-                    <Form.Control type='text' id='firstName' name='firstName' onChange={this.handleChange} value={this.state.firstName} placeholder='First name'/>
+                    <label htmlFor='firstName'></label>
+                    <input type='text' id='firstName' name='firstName' onChange={this.handleChange} value={this.state.firstName} placeholder='First name'/>
 
-                    <Form.Label htmlFor='lastName'></Form.Label>
-                    <Form.Control type='text' id='lastName' name='lastName' onChange={this.handleChange} value={this.state.lastName} placeholder='Last name'/>
+                    <label htmlFor='lastName'></label>
+                    <input type='text' id='lastName' name='lastName' onChange={this.handleChange} value={this.state.lastName} placeholder='Last name'/>
 
-                    <Form.Label htmlFor='phoneNumber'></Form.Label>
-                    <Form.Control type='text' id='phoneNumber' name='phoneNumber' onChange={this.handleChange} value={this.state.phoneNumber} placeholder='phone'/>
+                    <label htmlFor='phoneNumber'></label>
+                    <input type='text' id='phoneNumber' name='phoneNumber' onChange={this.handleChange} value={this.state.phoneNumber} placeholder='phone'/>
 
-                    <Form.Label htmlFor='email'></Form.Label>
-                    <Form.Control type='text' id='email' name='email' onChange={this.handleChange} value={this.state.email} placeholder='email'/>
+                    <label htmlFor='email'></label>
+                    <input type='text' id='email' name='email' onChange={this.handleChange} value={this.state.email} placeholder='email'/>
 
-                    <Button type='submit' value='Done'>Done</Button>
+                    <button type='submit' value='Done'>Done</button>
                 </form>
             </div>
         )
