@@ -168,8 +168,6 @@ class ContactList extends Component {
                 </NavList>
                     {this.props.contacts.map(contact => {
                         return (
-                        
-                          
                             <StyledContactList key={contact.id}>
                                 <Content>
                                 <StyledContactListItems>{contact.firstName} {contact.lastName}</StyledContactListItems>
@@ -181,8 +179,6 @@ class ContactList extends Component {
                                     <button onClick={()=>this.deleteContact(contact.id)}>X</button>
                                 </Utilities>
                             </StyledContactList>
-                            
-                        
                         )
                     })}
                 </div>
