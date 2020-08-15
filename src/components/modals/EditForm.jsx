@@ -1,18 +1,7 @@
 import React from 'react'
-
-
-
 const baseURL = 'http://localhost:3003'
 
 class Editform extends React.Component {
-    // state = {
-    //     firstName: '',
-    //     lastName: '',
-    //     phoneNumber: '',
-    //     email: '',
-    //     img: '',
-    // }
-
     state = {
         id: this.props.contactBeingEdited.id,
         firstName: this.props.contactBeingEdited.firstName,
@@ -65,8 +54,6 @@ class Editform extends React.Component {
             </div>
         )
     }
-
 }
-
 
 export default Editform

@@ -30,29 +30,25 @@ const Content = styled.div`
     display: flex;
     flex-wrap: wrap;
 `
-
 const Utilities = styled.div`
     display: flex;
     justify-content: flex-end;
     align-items: flex-start;
 `
-
-const Header = styled.header`
-    display: flex:
-    flex-direction: row;
+const NavList = styled.ul`
+    width: 80%;
+    display: flex;
     justify-content: space-between;
-    flex-wrap: nowrap;
     align: items: baseline;
-    margin 5px 0;
+    margin: 0 auto;
     padding: 10px 20px;
-    color: #fff;
-    font-weight: 500;
 `
-const Title = styled.p`
-    width: 100px;
+const ListItem = styled.li`
     padding: 5px;
     box-sizing: border-box;
-    margin: 0;
+    color: #fff;
+    font-size: 25px;
+    font-weight: 500;
 `
 
 class ContactList extends Component {
@@ -136,6 +132,7 @@ class ContactList extends Component {
     //         })
     //     })
 
+    // TODO fix bug on route that updats on refresh. Should update automatically 
     deleteContact = (id) => {
         console.log(baseURL)
         console.log(id)
@@ -159,20 +156,16 @@ class ContactList extends Component {
     render () {
         return (
             <div>
-        
+            {this.state.idOfContactToEdit !== -1 ? <EditForm updateContact={this.updateContact} editContact={this.editContact} idOfContactToEdit={this.state.idOfContactToEdit} contactBeingEdited={this.state.contactBeingEdited} /> : null }
 
-                {this.state.idOfContactToEdit !== -1 ? <EditForm updateContact={this.updateContact} editContact={this.editContact} idOfContactToEdit={this.state.idOfContactToEdit} contactBeingEdited={this.state.contactBeingEdited} /> : null }
-
-                
-
-                {this.state.show ? <NewContact baseURL={this.state.baseURL} handleAddContact={this.props.handleAddContact} /> : 
+            {this.state.show ? <NewContact baseURL={this.state.baseURL} handleAddContact={this.props.handleAddContact} /> : 
             <div >
-                <Header>
-                <Title>Contacts</Title>
-                <button onClick={ () => {
+                <NavList>
+                <ListItem>Contacts</ListItem>
+                <ListItem onClick={ () => {
                     this.showNewContactForm()
-                }}> + </button>
-                </Header>
+                }}> + </ListItem>
+                </NavList>
                     {this.props.contacts.map(contact => {
                         return (
                         
