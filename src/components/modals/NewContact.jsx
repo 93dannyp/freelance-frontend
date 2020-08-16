@@ -1,5 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
+import {Image, Transformation, CloudinaryContext} from 'cloudinary-react';
+
 
 
 class NewContact extends React.Component {
@@ -41,11 +43,31 @@ handleSubmit = () => {
     }).catch(error => console.error({'Error': error}))
 }
 
+showWidget = (widget) => {
+    console.log(widget)
+    widget.open()
+}
+
+checkImageUpload = (result) => {
+    if (result.event === "success") { 
+        console.log('Done! Here is the image info: ', result.info)
+        // push photo into contacts array here and set state to new array
+      }
+}
+
     render () {
+        let widget = window.cloudinary.createUploadWidget({
+            cloudName: 'dwjdyrkww', 
+            uploadPreset: 'nj5pg9gg'}, (error, result) => { this.checkImageUpload(result)
+            }
+          )
         return (
             <div>
                <h2>New Contact</h2> 
+               <button id="upload_widget" className="cloudinary-button" onClick={this.showWidget}>Upload files</button>
                 <form onSubmit={this.handleSubmit}>
+
+                    
                     <label htmlFor='img'></label>
                     <input type='text' id='img' name='img' onChange={this.handleChange} value={this.state.img} placeholder='add photo'/>
 

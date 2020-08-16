@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import NewContact from './modals/NewContact'
 import EditForm from './modals/EditForm'
 import styled from 'styled-components'
+import {Image, Transformation, CloudinaryContext} from 'cloudinary-react';
 
 
 const baseURL = 'http://localhost:3003'
@@ -133,23 +134,7 @@ class ContactList extends Component {
     //     })
 
     // TODO fix bug on route that updats on refresh. Should update automatically 
-    deleteContact = (id) => {
-        console.log(baseURL)
-        console.log(id)
-        fetch(baseURL + '/api/contacts/' + id, {
-            crossDomain: true,
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-        }).then(res => {
-            console.log(res)
-            const findIndex = this.props.contacts.findIndex(contact => contact.id === id)
-            const copyContacts = [...this.props.contacts]
-            copyContacts.splice(findIndex, 1)
-            this.setState({contacts: copyContacts})
-        })
-    }
+ 
 
     
 
@@ -170,13 +155,14 @@ class ContactList extends Component {
                         return (
                             <StyledContactList key={contact.id}>
                                 <Content>
+                                <Image cloudName="dwjdyrkww" publicId="sample" width="300" crop="scale" />
                                 <StyledContactListItems>{contact.firstName} {contact.lastName}</StyledContactListItems>
                                 <StyledContactListItems>{contact.phoneNumber}</StyledContactListItems>
                                 <StyledContactListItems>{contact.email}</StyledContactListItems>
                                 </Content>
                                 <Utilities>
                                     <button onClick={()=>this.editContact(contact)}>Edit</button>
-                                    <button onClick={()=>this.deleteContact(contact.id)}>X</button>
+                                    <button onClick={()=>this.props.deleteContact(contact.id)}>X</button>
                                 </Utilities>
                             </StyledContactList>
                         )

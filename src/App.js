@@ -31,6 +31,7 @@ class App extends Component {
                 return data.json()
             })
         .then(data => {
+            data.sort((a,b) => (a.lastName > b.lastName) ? 1 : ((b.lastName > a.lastName) ? -1 : 0))
             this.setState({
                 contacts: data,
             })
@@ -41,6 +42,7 @@ class App extends Component {
     handleAddContact = (contact) => {
       const copyContacts = [...this.state.contacts]
       copyContacts.unshift(contact)
+      copyContacts.sort()
       this.setState({
           contacts: copyContacts,
           show: false
@@ -72,6 +74,43 @@ class App extends Component {
       })
   }
 
+  deleteContact = (id) => {
+    console.log(baseURL)
+    console.log(id)
+    fetch(baseURL + '/api/contacts/' + id, {
+        crossDomain: true,
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+    }).then(res => {
+        console.log(res)
+        const findIndex = this.state.contacts.findIndex(contact => contact.id === id)
+        const copyContacts = [...this.state.contacts]
+        copyContacts.splice(findIndex, 1)
+        this.setState({contacts: copyContacts})
+    })
+}
+
+deleteProject = (id) => {
+  console.log(baseURL)
+  console.log(id)
+  fetch(baseURL + '/api/projects/' + id, {
+      crossDomain: true,
+      method: 'DELETE',
+      headers: {
+          'Content-Type': 'application/json'
+      },
+  }).then(res => {
+      console.log(res)
+      const findIndex = this.state.projects.findIndex(project => project.id === id)
+      const copyProjects = [...this.state.projects]
+      copyProjects.splice(findIndex, 1)
+      this.setState({projects: copyProjects})
+  })
+}
+
+
     componentDidMount(){
       this.getContacts()
       this.getProjects()
@@ -91,10 +130,10 @@ class App extends Component {
         <h2>freelance CRM</h2>
         </div>
                <div className='contact-list'>
-        <ContactList  handleAddContact={this.handleAddContacts} getContacts={this.getContacts} contacts={this.state.contacts} />
+        <ContactList deleteContact={this.deleteContact} handleAddContact={this.handleAddContacts} getContacts={this.getContacts} contacts={this.state.contacts} />
         </div>
         <div className='project-list'>
-        <ProjectList  contacts={this.state.contacts} projects={this.state.projects}/>
+        <ProjectList  deleteProject={this.deleteProject} contacts={this.state.contacts} projects={this.state.projects}/>
         </div>
       
         </div>

@@ -127,24 +127,7 @@ class ProjectList extends Component {
     }
 
     // TODO fix bug on route that updats on refresh. Should update automatically 
-    deleteProject = (id) => {
-        console.log(baseURL)
-        console.log(id)
-        fetch(baseURL + '/api/projects/' + id, {
-            crossDomain: true,
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-        }).then(res => {
-            console.log(res)
-            const findIndex = this.props.projects.findIndex(project => project.id === id)
-            const copyProjects = [...this.props.projects]
-            copyProjects.splice(findIndex, 1)
-            this.setState({projects: copyProjects})
-        })
-    }
-
+   
     componentDidMount(){
 
     }
@@ -163,7 +146,7 @@ class ProjectList extends Component {
                                 <small>{project.projectDueDate}</small>
                                 <Utilities>
                                     <button onClick={()=>this.editProject(project)}>Edit</button>
-                                    <button onClick={()=>this.deleteProject(project.id)}>X</button>
+                                    <button onClick={()=>this.props.deleteProject(project.id)}>X</button>
                                 </Utilities>
                                 
                             </div>
