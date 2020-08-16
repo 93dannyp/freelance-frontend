@@ -108,6 +108,7 @@ deleteProject = (id) => {
       copyProjects.splice(findIndex, 1)
       this.setState({projects: copyProjects})
   })
+  
 }
 
 
