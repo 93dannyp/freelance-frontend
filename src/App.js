@@ -7,7 +7,7 @@ import Header from './components/Header'
 
 
 
-let baseURL = 'http://localhost:3003'
+const baseURL = 'http://localhost:3003' || process.env.REACT_APP_baseURL
 
 // TODO make sure this logic works with connecting baseURL
 //  if (process.env.NODE_ENV === 'development') {

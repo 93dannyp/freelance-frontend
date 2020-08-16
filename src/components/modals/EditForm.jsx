@@ -1,5 +1,5 @@
 import React from 'react'
-const baseURL = 'http://localhost:3003'
+
 
 class Editform extends React.Component {
     state = {

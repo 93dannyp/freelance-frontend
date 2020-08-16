@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import {Image, Transformation, CloudinaryContext} from 'cloudinary-react';
 
 
-const baseURL = 'http://localhost:3003'
+const baseURL = 'http://localhost:3003' || process.env.REACT_APP_baseURL
 
 
 const StyledContactList = styled.ul`
