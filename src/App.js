@@ -6,7 +6,9 @@ import SideBar from './components/Sidebar'
 import Header from './components/Header'
 
 
-const baseURL = process.env.REACT_APP_baseURL || 'http://localhost:3003' 
+// const baseURL = process.env.REACT_APP_baseURL || 'http://localhost:3003' 
+const baseURL = 'https://freelance-backend.herokuapp.com'
+
 
 // TODO make sure this logic works with connecting baseURL
 //  if (process.env.NODE_ENV === 'development') {
@@ -14,6 +16,7 @@ const baseURL = process.env.REACT_APP_baseURL || 'http://localhost:3003'
 //  } else {
 //    baseURL = 'deployment backend here'
 //  }
+
 // console.log('Current base URL:', baseURL)
 
 
