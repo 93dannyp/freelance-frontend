@@ -133,7 +133,7 @@ deleteProject = (id) => {
         <ContactList deleteContact={this.deleteContact} handleAddContact={this.handleAddContacts} getContacts={this.getContacts} contacts={this.state.contacts} />
         </div>
         <div className='project-list'>
-        <ProjectList  deleteProject={this.deleteProject} contacts={this.state.contacts} projects={this.state.projects}/>
+        <ProjectList  deleteProject={this.deleteProject}contacts={this.state.contacts} projects={this.state.projects}/>
         </div>
       
         </div>

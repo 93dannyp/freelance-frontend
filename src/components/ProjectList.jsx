@@ -126,8 +126,6 @@ class ProjectList extends Component {
         })
     }
 
-    // TODO fix bug on route that updats on refresh. Should update automatically 
-   
     componentDidMount(){
 
     }

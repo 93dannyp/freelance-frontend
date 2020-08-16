@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import {Image, Transformation, CloudinaryContext} from 'cloudinary-react';
 
-
+let widget
 
 class NewContact extends React.Component {
     state = {
@@ -43,7 +43,7 @@ handleSubmit = () => {
     }).catch(error => console.error({'Error': error}))
 }
 
-showWidget = (widget) => {
+showWidget = () => {
     console.log(widget)
     widget.open()
 }
@@ -55,8 +55,18 @@ checkImageUpload = (result) => {
       }
 }
 
+// toggleLead = (lead) => {
+//     if (checkBox === 'on') {
+//         lead = true
+//     } else {
+
+//     }
+// }
+
+
+
     render () {
-        let widget = window.cloudinary.createUploadWidget({
+        widget = window.cloudinary.createUploadWidget({
             cloudName: 'dwjdyrkww', 
             uploadPreset: 'nj5pg9gg'}, (error, result) => { this.checkImageUpload(result)
             }
@@ -64,7 +74,7 @@ checkImageUpload = (result) => {
         return (
             <div>
                <h2>New Contact</h2> 
-               <button id="upload_widget" className="cloudinary-button" onClick={this.showWidget}>Upload files</button>
+                    <button id="upload_widget" className="cloudinary-button" onClick={this.showWidget}>Upload files</button>
                 <form onSubmit={this.handleSubmit}>
 
                     
@@ -83,7 +93,10 @@ checkImageUpload = (result) => {
                     <label htmlFor='email'></label>
                     <input type='text' id='email' name='email' onChange={this.handleChange} value={this.state.email} placeholder='email'/>
 
-                    <button type='submit' value='Done'>Done</button>
+                    <label htmlFor='lead'></label>
+                    <input type='checkbox' id='lead' name='lead' onChange={this.handleChange}/>
+
+                    <button type='submit' value='Done'>Done </button>
                 </form>
             </div>
         )

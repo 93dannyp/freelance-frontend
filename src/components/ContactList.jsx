@@ -133,11 +133,7 @@ class ContactList extends Component {
     //         })
     //     })
 
-    // TODO fix bug on route that updats on refresh. Should update automatically 
  
-
-    
-
     render () {
         return (
             <div>
@@ -155,7 +151,7 @@ class ContactList extends Component {
                         return (
                             <StyledContactList key={contact.id}>
                                 <Content>
-                                <Image cloudName="dwjdyrkww" publicId="sample" width="300" crop="scale" />
+                                <Image cloudName="dwjdyrkww" publicId="sample" width="100" crop="scale" />
                                 <StyledContactListItems>{contact.firstName} {contact.lastName}</StyledContactListItems>
                                 <StyledContactListItems>{contact.phoneNumber}</StyledContactListItems>
                                 <StyledContactListItems>{contact.email}</StyledContactListItems>
