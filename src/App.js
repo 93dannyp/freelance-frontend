@@ -6,8 +6,7 @@ import SideBar from './components/Sidebar'
 import Header from './components/Header'
 
 
-
-const baseURL = 'http://localhost:3003' || process.env.REACT_APP_baseURL
+const baseURL = process.env.REACT_APP_baseURL || 'http://localhost:3003' 
 
 // TODO make sure this logic works with connecting baseURL
 //  if (process.env.NODE_ENV === 'development') {
@@ -108,7 +107,7 @@ deleteProject = (id) => {
       copyProjects.splice(findIndex, 1)
       this.setState({projects: copyProjects})
   })
-  
+
 }
 
 
