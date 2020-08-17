@@ -110,7 +110,7 @@ class ContactList extends Component {
             console.log(data.dataValues)
             return data.json()
         }).then(data => {
-            this.handleAddContact(data)
+            this.props.handleAddContact(data)
             this.setState({
                 idOfContactToEdit: -1,
                 contacts: data,

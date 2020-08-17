@@ -3,16 +3,10 @@ import NewProject from './modals/NewProject'
 import ProjectEditForm from './modals/ProjectEditForm'
 import styled from 'styled-components'
 
-const CardArrangement = styled.div`
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    flex-direction: row;
-    flex-wrap: wrap;
-`
+
 
 const StyledProjectCard = styled.div`
-    width: 90%;
+    max-width: 600px;
     height: 270px;
     padding: 5px;
     margin: 15px auto;
@@ -136,7 +130,7 @@ class ProjectList extends Component {
                 
                 
             
-                <div value={project.contactId}  key={index}>
+            <div value={project.contactId}  key={index}>
                     <div>
                         <StyledProjectCard>
                             <NavDiv>
@@ -156,7 +150,6 @@ class ProjectList extends Component {
                         </StyledProjectCard>
                     </div>
                 </div>
-           
 
             )
         })

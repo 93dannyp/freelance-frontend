@@ -58,7 +58,7 @@ input {
   display: flex;
   justify-content: center;
   grid-column-start: 3;
-  grid-column-end: 6;
+  grid-column-end: 5;
   grid-row-start: 2;
   grid-row-end: 3;
   border-radius: 15px;
@@ -74,7 +74,7 @@ input {
 
 .project-list {
   grid-column-start: 3;
-  grid-column-end: 6;
+  grid-column-end: 5;
   grid-row-start: 3;
   grid-row-end: 4;
   border-radius: 15px;
@@ -84,6 +84,7 @@ input {
   flex-direction: row;
   background-color: rgb(195, 221, 182);
   overflow: auto;
+  color: #fff;
 }
 
 .project-list:hover {
@@ -93,16 +94,16 @@ input {
 .container {
   display: grid;
 
-  grid-template-columns: [first] 25% [end];
+  grid-template-columns: 25%;
   grid-template-rows: [row1-start] 50px [row2-start] 400px [row3-start] 400px [row4-start] 400px [last-line];
   row-gap: 25px;
 
   grid-template-areas:
 
-  "sidebar header header header"
-  "sidebar main main main"
-  "sidebar main main main"
-  "sidebar main main main";
+  "sidebar header header header header"
+  "sidebar main main main main"
+  "sidebar main main main main"
+  "sidebar main main main main";
 
   /* grid-container height = 100% of viewport height */
   /* height: 100vh; */
