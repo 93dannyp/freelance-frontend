@@ -24,6 +24,7 @@ class App extends Component {
   state = {
     contacts: [],
     projects: []
+    
   }
   // Fetching contact data from back end
   getContacts = () => {
