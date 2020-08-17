@@ -4,11 +4,12 @@ import ContactList from './components/ContactList'
 import ProjectList from './components/ProjectList'
 import SideBar from './components/Sidebar'
 import Header from './components/Header'
+import { Switch, Route } from 'react-router-dom'
 
 
 // const baseURL = process.env.REACT_APP_baseURL || 'http://localhost:3003' 
-const baseURL = 'https://freelance-backend.herokuapp.com'
-
+// const baseURL = 'https://freelance-backend.herokuapp.com' || 'http://localhost:3003'
+const baseURL = 'http://localhost:3003'
 
 // TODO make sure this logic works with connecting baseURL
 //  if (process.env.NODE_ENV === 'development') {
@@ -24,7 +25,7 @@ class App extends Component {
   state = {
     contacts: [],
     projects: []
-    
+
   }
   // Fetching contact data from back end
   getContacts = () => {
@@ -111,7 +112,6 @@ deleteProject = (id) => {
       copyProjects.splice(findIndex, 1)
       this.setState({projects: copyProjects})
   })
-
 }
 
 
@@ -124,13 +124,14 @@ deleteProject = (id) => {
     return (
     
       <div className="App">
+       
         
         <div className='container'>
         
         <SideBar className='grid-sidebar'/>
             
         {/* <Header className='header'/> */}
-      <div className='header'>
+      <div className='header' id='section1'>
         <h2>freelance CRM</h2>
         </div>
                <div className='contact-list'>

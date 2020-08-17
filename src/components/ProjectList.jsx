@@ -5,26 +5,24 @@ import styled from 'styled-components'
 
 const CardArrangement = styled.div`
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: flex-start;
     flex-direction: row;
     flex-wrap: wrap;
 `
 
 const StyledProjectCard = styled.div`
-    width: 200px;
-    height: 300px;
-    margin: 50px;
+    width: 90%;
+    height: 270px;
     padding: 5px;
+    margin: 15px auto;
     box-sizing: border-box;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: flex-start;
-    flex-direction: row;
     flex-wrap: wrap;
     background: rgb(235,235,235);
     color: rgb(56,56,56);
-    margin: 5px auto;
     border-radius: 10px;
 `
 const StyledProjectContent = styled.div`
@@ -37,19 +35,21 @@ const StyledProjectContent = styled.div`
 const Content = styled.div`
     display: flex;
     flex-wrap: wrap;
+    padding: 0px 20px 0px 20px;
 `
 const Utilities = styled.div`
     display: flex;
     justify-content: flex-end;
     align-items: flex-start;
 `
-const NavList = styled.ul`
-    width: 80%;
+const NavDiv = styled.div`
+    width: 90%;
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
-    align: items: baseline;
+    align-items: flex-start;
     margin: 0 auto;
-    padding: 10px 20px;
+    padding: 0px;
 `
 const ListItem = styled.li`
     padding: 5px;
@@ -134,33 +134,35 @@ class ProjectList extends Component {
         const projectsByContact = this.props.projects.map((project, index)=>{
             return (
                 
-                <CardArrangement>
-                    
+                
+            
                 <div value={project.contactId}  key={index}>
                     <div>
                         <StyledProjectCard>
+                            <NavDiv>
                             <div>
                                 <h5>{project.projectTitle}</h5>
                                 <small>{project.projectDueDate}</small>
+                            </div>
                                 <Utilities>
                                     <button onClick={()=>this.editProject(project)}>Edit</button>
                                     <button onClick={()=>this.props.deleteProject(project.id)}>X</button>
                                 </Utilities>
-                                
-                            </div>
-                            <div>
+                            </NavDiv>
+                           
+                            <Content>
                                 <p>{project.projectDescription}</p>  
-                            </div>    
+                            </Content>    
                         </StyledProjectCard>
                     </div>
                 </div>
-                </CardArrangement>
+           
 
             )
         })
 
         return (
-            <div>
+            <div id='section3'>
                 <h2>Projects</h2>
                 <button onClick={ () => {
                 this.arrangeProjectByContact()

@@ -1,5 +1,10 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
+import { HashLink as Link } from 'react-router-hash-link';
+import { Router, Route, Switch } from "react-router";
+import { HashLink } from 'react-router-hash-link';
+
+
 
 const SidebarContainer = styled.div`
     height: 100vh;
@@ -8,6 +13,7 @@ const SidebarContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: left;
+    position: fixed;
     @media (max-width: 375px) {
         display: none;
      }
@@ -71,15 +77,21 @@ class SideBar extends Component {
         return <>
             <SidebarContainer>
                 <SidebarMenu>
-                    <SidebarMenuItem>
-                        <SidebarMenuItemLabel>Dashboard</SidebarMenuItemLabel>
-                    </SidebarMenuItem>
-                    <SidebarMenuItem>
-                        <SidebarMenuItemLabel>Contacts</SidebarMenuItemLabel>
-                    </SidebarMenuItem>
-                    <SidebarMenuItem>
-                        <SidebarMenuItemLabel>Projects</SidebarMenuItemLabel>
-                    </SidebarMenuItem>
+                    <HashLink smooth to='/#section1'>
+                        <SidebarMenuItem>
+                            <SidebarMenuItemLabel>Dashboard</SidebarMenuItemLabel>
+                        </SidebarMenuItem>
+                    </HashLink>
+                    <HashLink smooth to='/api/contacts/#section2'>
+                        <SidebarMenuItem>
+                            <SidebarMenuItemLabel>Contacts</SidebarMenuItemLabel>
+                        </SidebarMenuItem>
+                    </HashLink>
+                    <HashLink smooth to='/api/projects/#section3'>
+                        <SidebarMenuItem>
+                            <SidebarMenuItemLabel>Projects</SidebarMenuItemLabel>
+                        </SidebarMenuItem>
+                    </HashLink>
                     <UserAuthItem>
                         <UserAuthLabel>Login</UserAuthLabel>
                         <UserAuthLabel>Sign Out</UserAuthLabel>
