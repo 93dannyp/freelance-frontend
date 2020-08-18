@@ -120,19 +120,6 @@ class ContactList extends Component {
             console.log(err)
         })
     }
-
-
-    // fetch(baseURL + '/api/contacts/')
-    //     .then(
-    //         data => {
-    //             return data.json()
-    //         })
-    //     .then(data => {
-    //         this.setState({
-    //             contacts: data,
-    //         })
-    //     })
-
  
     render () {
         return (
