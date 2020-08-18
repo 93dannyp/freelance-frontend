@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import { HashLink as Link } from 'react-router-hash-link';
-import { Router, Route, Switch } from "react-router";
 import { HashLink } from 'react-router-hash-link';
 
 

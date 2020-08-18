@@ -127,9 +127,6 @@ class ProjectList extends Component {
     render () {
         const projectsByContact = this.props.projects.map((project, index)=>{
             return (
-                
-                
-            
             <div value={project.contactId}  key={index}>
                     <div>
                         <StyledProjectCard>
@@ -150,7 +147,6 @@ class ProjectList extends Component {
                         </StyledProjectCard>
                     </div>
                 </div>
-
             )
         })
 

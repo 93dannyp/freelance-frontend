@@ -8,14 +8,17 @@ class NewContact extends React.Component {
     state = {
         firstName: '',
         lastName: '',
+        company: '',
         phoneNumber: '',
         email: '',
         img: '',
+        lead: false,
+        notes: '',
     }
 
 handleChange = (event) => {
     this.setState({
-        [event.currentTarget.id]: event.currentTarget.value
+        [event.currentTarget.name]: event.currentTarget.value
     })
 }
 
@@ -36,9 +39,12 @@ handleSubmit = () => {
         this.setState({
             firstName: '',
             lastName: '',
+            company: '',
             phoneNumber: '',
             email: '',
             img: '',
+            lead: false,
+            notes: '',
         })
     }).catch(error => console.error({'Error': error}))
 }
@@ -60,15 +66,15 @@ checkImageUpload = (result) => {
       }
 }
 
-// toggleLead = (lead) => {
-//     if (checkBox === 'on') {
-//         lead = true
-//     } else {
+    handleCheck = (event) => {
+        console.log(event.target.checked)
+        this.setState({
+            lead: event.target.checked
+        })
+    }
 
-//     }
-// }
 
-
+  
 
     render () {
         widget = window.cloudinary.createUploadWidget({
@@ -92,14 +98,17 @@ checkImageUpload = (result) => {
                     <label htmlFor='lastName'></label>
                     <input type='text' id='lastName' name='lastName' onChange={this.handleChange} value={this.state.lastName} placeholder='Last name'/>
 
+                    <label htmlFor='company'></label>
+                    <input type='text' id='company' name='company' onChange={this.handleChange} value={this.state.company} placeholder='company'/>
+
                     <label htmlFor='phoneNumber'></label>
                     <input type='text' id='phoneNumber' name='phoneNumber' onChange={this.handleChange} value={this.state.phoneNumber} placeholder='phone'/>
 
                     <label htmlFor='email'></label>
                     <input type='text' id='email' name='email' onChange={this.handleChange} value={this.state.email} placeholder='email'/>
 
-                    <label htmlFor='lead'></label>
-                    <input type='checkbox' id='lead' name='lead' onChange={this.handleChange}/>
+                    <label htmlFor='lead'>Business Lead
+                    <input type='checkbox' id='lead' name='lead' checked={this.state.lead} onChange={(e)=>{this.handleCheck(e)}}/></label>
 
                     <button type='submit' value='Done'>Done </button>
                 </form>
