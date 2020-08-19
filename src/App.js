@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import './App.css';
 import ContactList from './components/ContactList'
 import ProjectList from './components/ProjectList'
+import BusinessLeadsList from './components/BusinessLeadsList';
+import TweetList from './components/TweetList'
 import SideBar from './components/Sidebar'
-import Header from './components/Header'
-import { Switch, Route } from 'react-router-dom'
+
+
 
 
 // const baseURL = process.env.REACT_APP_baseURL || 'http://localhost:3003' 
@@ -25,8 +27,8 @@ class App extends Component {
   state = {
     contacts: [],
     projects: []
-
   }
+
   // Fetching contact data from back end
   getContacts = () => {
         fetch(baseURL + '/api/contacts/')
@@ -41,6 +43,7 @@ class App extends Component {
             })
         })
     }
+    
     // adding contact data to contacts array
     // setting state to new array that contains contact data
     handleAddContact = (contact) => {
@@ -124,23 +127,31 @@ deleteProject = (id) => {
     return (
     
       <div className="App">
-       
+       <div className='container column'>
         
-        <div className='container'>
-        
-        <SideBar className='grid-sidebar'/>
+        <SideBar className='' id='left'/>
             
-        {/* <Header className='header'/> */}
       <div className='header' id='section1'>
-        <h2>freelance CRM</h2>
+          <h3>freelance CRM</h3>
         </div>
-               <div className='contact-list'>
-        <ContactList deleteContact={this.deleteContact} handleAddContact={this.handleAddContacts} getContacts={this.getContacts} contacts={this.state.contacts} />
+<div className='widget-container main'>
+        <div className='widget hide-scrollbar contacts-color'>
+          <ContactList deleteContact={this.deleteContact} handleAddContact={this.handleAddContacts} getContacts={this.getContacts} contacts={this.state.contacts} />
         </div>
-        <div className='project-list'>
-        <ProjectList  deleteProject={this.deleteProject}contacts={this.state.contacts} projects={this.state.projects}/>
+
+        <div className='widget hide-scrollbar projects-color'>
+          <ProjectList  deleteProject={this.deleteProject}contacts={this.state.contacts} projects={this.state.projects}/>
         </div>
-      
+
+        <div className='widget hide-scrollbar leads-color'>
+          <BusinessLeadsList contacts={this.state.contacts}/>
+          
+        </div>
+        <div className='widget hide-scrollbar social-color'>
+          <TweetList/> 
+          
+        </div>
+        </div>
         </div>
       </div>
     )

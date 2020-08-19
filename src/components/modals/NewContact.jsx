@@ -8,14 +8,17 @@ class NewContact extends React.Component {
     state = {
         firstName: '',
         lastName: '',
+        company: '',
         phoneNumber: '',
         email: '',
         img: '',
+        lead: false,
+        notes: '',
     }
 
 handleChange = (event) => {
     this.setState({
-        [event.currentTarget.id]: event.currentTarget.value
+        [event.currentTarget.name]: event.currentTarget.value
     })
 }
 
@@ -36,9 +39,12 @@ handleSubmit = () => {
         this.setState({
             firstName: '',
             lastName: '',
+            company: '',
             phoneNumber: '',
             email: '',
             img: '',
+            lead: false,
+            notes: '',
         })
     }).catch(error => console.error({'Error': error}))
 }
@@ -60,15 +66,12 @@ checkImageUpload = (result) => {
       }
 }
 
-// toggleLead = (lead) => {
-//     if (checkBox === 'on') {
-//         lead = true
-//     } else {
-
-//     }
-// }
-
-
+    handleCheck = (event) => {
+        console.log(event.target.checked)
+        this.setState({
+            lead: event.target.checked
+        })
+    }
 
     render () {
         widget = window.cloudinary.createUploadWidget({
@@ -79,27 +82,30 @@ checkImageUpload = (result) => {
         return (
             <div>
                <h2>New Contact</h2> 
-                    <button id="upload_widget" className="cloudinary-button" onClick={this.showWidget}>Upload files</button>
+                    <button id="upload_widget" className="" onClick={this.showWidget}>Upload files</button><br/>
                 <form onSubmit={this.handleSubmit}>
 
                     
                     <label htmlFor='img'></label>
-                    <input type='text' id='img' name='img' onChange={this.handleChange} value={this.state.img} placeholder='add photo'/>
+                    <input type='text' id='img' name='img' onChange={this.handleChange} value={this.state.img} placeholder='add photo'/><br/>
 
                     <label htmlFor='firstName'></label>
-                    <input type='text' id='firstName' name='firstName' onChange={this.handleChange} value={this.state.firstName} placeholder='First name'/>
+                    <input type='text' id='firstName' name='firstName' onChange={this.handleChange} value={this.state.firstName} placeholder='First name'/><br/>
 
                     <label htmlFor='lastName'></label>
-                    <input type='text' id='lastName' name='lastName' onChange={this.handleChange} value={this.state.lastName} placeholder='Last name'/>
+                    <input type='text' id='lastName' name='lastName' onChange={this.handleChange} value={this.state.lastName} placeholder='Last name'/><br/>
+
+                    <label htmlFor='company'></label>
+                    <input type='text' id='company' name='company' onChange={this.handleChange} value={this.state.company} placeholder='company'/><br/>
 
                     <label htmlFor='phoneNumber'></label>
-                    <input type='text' id='phoneNumber' name='phoneNumber' onChange={this.handleChange} value={this.state.phoneNumber} placeholder='phone'/>
+                    <input type='text' id='phoneNumber' name='phoneNumber' onChange={this.handleChange} value={this.state.phoneNumber} placeholder='phone'/><br/>
 
                     <label htmlFor='email'></label>
-                    <input type='text' id='email' name='email' onChange={this.handleChange} value={this.state.email} placeholder='email'/>
+                    <input type='text' id='email' name='email' onChange={this.handleChange} value={this.state.email} placeholder='email'/><br/>
 
-                    <label htmlFor='lead'></label>
-                    <input type='checkbox' id='lead' name='lead' onChange={this.handleChange}/>
+                    <label htmlFor='lead'>Business Lead
+                    <input type='checkbox' id='lead' name='lead' checked={this.state.lead} onChange={(e)=>{this.handleCheck(e)}}/></label><br/>
 
                     <button type='submit' value='Done'>Done </button>
                 </form>

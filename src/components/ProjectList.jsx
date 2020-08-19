@@ -3,20 +3,39 @@ import NewProject from './modals/NewProject'
 import ProjectEditForm from './modals/ProjectEditForm'
 import styled from 'styled-components'
 
-
-
-const StyledProjectCard = styled.div`
-    max-width: 600px;
-    height: 270px;
+const StyledContactList = styled.ul`
+    width: 90%;
+    margin: 50px;
     padding: 5px;
-    margin: 15px auto;
     box-sizing: border-box;
     display: flex;
+    justify-content: space-between;
+    background: rgba(240,240,240, .8);
+    color: rgb(56,56,56);
+    margin: 5px auto;
+    border-radius: 10px;
+`
+const StyledContactListItems = styled.li`
+    width: 90%;
+    display: flex;
     flex-direction: column;
+    padding: 10px 20px;
+    color: rgb(56,56,56);
+    margin: 0;
+    padding: 0;
+    transition: 0.3s
+`
+const StyledTitle = styled.h5`
+    margin: 0;
+    padding: 0;
+`
+
+const StyledProjectCard = styled.div`
+    display: flex;
     align-items: flex-start;
     flex-wrap: wrap;
-    background: rgb(235,235,235);
-    color: rgb(56,56,56);
+    background: rgba(240,240,240, .8);
+    color: #fff;
     border-radius: 10px;
 `
 const StyledProjectContent = styled.div`
@@ -29,30 +48,40 @@ const StyledProjectContent = styled.div`
 const Content = styled.div`
     display: flex;
     flex-wrap: wrap;
-    padding: 0px 20px 0px 20px;
+    
 `
 const Utilities = styled.div`
     display: flex;
     justify-content: flex-end;
     align-items: flex-start;
+    margin: 0;
+    padding: 0;
 `
 const NavDiv = styled.div`
-    width: 90%;
+    width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-start;
-    margin: 0 auto;
-    padding: 0px;
+    margin: 0;
+    padding: 0;
+`
+const NavList = styled.ul`
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-left: 40px;
+    padding: 0;
 `
 const ListItem = styled.li`
     padding: 5px;
-    box-sizing: border-box;
+    margin-left: 15px;
+    padding-left 20px;
     color: #fff;
     font-size: 25px;
     font-weight: 500;
 `
-
 
 const baseURL = 'http://localhost:3003'
 
@@ -65,11 +94,11 @@ class ProjectList extends Component {
         idOfProjectToEdit: -1,
         showNewProject: false,
     }
-    arrangeProjectByContact = () => {
-        this.setState({
-            arrangeByContact: !this.state.arrangeByContact,
-        })
-    }
+    // arrangeProjectByContact = () => {
+    //     this.setState({
+    //         arrangeByContact: !this.state.arrangeByContact,
+    //     })
+    // }
 
     handleAddProject = (project) => {
         const copyProjects = [...this.state.projects]
@@ -127,43 +156,45 @@ class ProjectList extends Component {
     render () {
         const projectsByContact = this.props.projects.map((project, index)=>{
             return (
-                
-                
-            
             <div value={project.contactId}  key={index}>
-                    <div>
-                        <StyledProjectCard>
+                    <StyledContactList>
+                        <StyledContactListItems>
                             <NavDiv>
                             <div>
-                                <h5>{project.projectTitle}</h5>
-                                <small>{project.projectDueDate}</small>
+                                <StyledTitle>{project.projectTitle}</StyledTitle>
+                                <small>Due: {project.projectDueDate}</small>
                             </div>
+                                <div>
                                 <Utilities>
                                     <button onClick={()=>this.editProject(project)}>Edit</button>
                                     <button onClick={()=>this.props.deleteProject(project.id)}>X</button>
                                 </Utilities>
+                                </div>
                             </NavDiv>
                            
                             <Content>
                                 <p>{project.projectDescription}</p>  
                             </Content>    
-                        </StyledProjectCard>
-                    </div>
+                        </StyledContactListItems>
+                        </StyledContactList>
                 </div>
-
             )
         })
 
         return (
             <div id='section3'>
-                <h2>Projects</h2>
-                <button onClick={ () => {
-                this.arrangeProjectByContact()
-                 }}>Sort</button>
-                {this.state.arrangeByContact ? projectsByContact : null }
-                
-                <NewProject contacts={this.props.contacts} baseURL={this.state.baseURL} handleAddProject={this.handleAddProject}/>
-                <div>{this.state.idOfProjectToEdit !== -1 ? <ProjectEditForm updateProject={this.updateProject} editProject={this.editProject} idOfProjectToEdit={this.state.idOfProjectToEdit} projectBeingEdited={this.state.projectBeingEdited} /> : null }</div>
+                <Content>
+                    {this.state.idOfProjectToEdit !== -1 ? <ProjectEditForm updateProject={this.updateProject} editProject={this.editProject} idOfProjectToEdit={this.state.idOfProjectToEdit} projectBeingEdited={this.state.projectBeingEdited} /> : null }
+                </Content>
+                <div>
+                <NavList>
+                    <ListItem >Projects</ListItem>
+                    <ListItem onClick={ () => {
+                    this.showNewProjectForm()
+                }}>+</ListItem>    
+                </NavList>
+                    {this.state.showNewProject ? <NewProject contacts={this.props.contacts} baseURL={this.state.baseURL} handleAddProject={this.handleAddProject}/> : <div>{projectsByContact} </div> }                
+                </div>
             </div>
         )
     }

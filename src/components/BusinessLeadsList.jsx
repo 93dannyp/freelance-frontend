@@ -2,8 +2,6 @@ import React, { Component } from 'react'
 import NewContact from './modals/NewContact'
 import EditForm from './modals/EditForm'
 import styled from 'styled-components'
-import {Image, Transformation, CloudinaryContext} from 'cloudinary-react';
-
 
 const baseURL = 'http://localhost:3003' || process.env.REACT_APP_baseURL
 
@@ -16,7 +14,7 @@ const StyledContactList = styled.ul`
     display: flex;
     justify-content: space-between;
     background: rgba(240,240,240, .5);
-    color: rgb(56,56,56);
+    color: #fff;
     margin: 5px auto;
     border-radius: 10px;
 `
@@ -40,7 +38,7 @@ const NavList = styled.ul`
     width: 80%;
     display: flex;
     justify-content: space-between;
-    align-items: baseline;
+    align: items: baseline;
     margin: 0 auto;
     padding: 10px 20px;
 `
@@ -52,7 +50,8 @@ const ListItem = styled.li`
     font-weight: 500;
 `
 
-class ContactList extends Component {
+
+class BusinessLeadsList extends Component {
     state = {
         show: false,
         baseURL: baseURL,
@@ -60,33 +59,11 @@ class ContactList extends Component {
         idOfContactToEdit: -1
     }
 
-    // getContacts = () => {
-    //     fetch(baseURL + '/api/contacts/')
-    //     .then(
-    //         data => {
-    //             return data.json()
-    //         })
-    //     .then(data => {
-    //         this.setState({
-    //             contacts: data,
-    //         })
-    //     })
-    // }
-
     showNewContactForm = () => {
         this.setState({
             show: !this.state.show,
         })
     }
-
-    // handleAddContact = (contact) => {
-    //     const copyContacts = [...this.state.contacts]
-    //     copyContacts.unshift(contact)
-    //     this.setState({
-    //         contacts: copyContacts,
-    //         show: false
-    //     })
-    // }
 
     editContact = (contact) => {
         console.log(contact)
@@ -122,45 +99,42 @@ class ContactList extends Component {
     }
  
     render () {
-        return (
-            <div id='section2'>
-                <Content>
-                    {this.state.idOfContactToEdit !== -1 ? <EditForm updateContact={this.updateContact} editContact={this.editContact} idOfContactToEdit={this.state.idOfContactToEdit} contactBeingEdited={this.state.contactBeingEdited} /> : null }
-                </Content>
-                {this.state.show ? <NewContact baseURL={this.state.baseURL} handleAddContact={this.props.handleAddContact} /> : 
-            <div>
-                <NavList>
-                    <ListItem>Contacts</ListItem>
-                    <ListItem onClick={ () => {
-                    this.showNewContactForm()
-                    }}> + </ListItem>
-                </NavList>
-                    {this.props.contacts.map(contact => {
-                        return (
-                            <StyledContactList key={contact.id}>
-                                <Content>
-                                    <Image cloudName="dwjdyrkww" src={contact.img} width="70" crop="scale" />
-                                    <StyledContactListItems>{contact.firstName} {contact.lastName}</StyledContactListItems>
-                                    <StyledContactListItems>{contact.phoneNumber}</StyledContactListItems>
-                                    <StyledContactListItems>{contact.email}</StyledContactListItems>
-                                </Content>
-                                <Utilities>
+        const leads = this.props.contacts.map((contact, index)=>{
+            return (
+                <div value={contact.id}  key={index}>
+                    <StyledContactList>
+                        <div>
+                            
+                        </div>
+                        {contact.lead ?
+                        <div>
+                            <Utilities>
                                     <button onClick={()=>this.editContact(contact)}>Edit</button>
                                     <button onClick={()=>this.props.deleteContact(contact.id)}>X</button>
-                                </Utilities>
-                            </StyledContactList>
-                        )
-                    })}
+                            </Utilities>
+                            <h5>{contact.firstName} {contact.lastName}</h5>
+                            <h5>{contact.company}</h5>
+                            <h5>{contact.phoneNumber}</h5>
+                            <h5>{contact.email}</h5>
+                            <h5>{contact.notes}</h5>
+                            <h5>{contact.createdAt} since you last contacted this lead!</h5>
+                        </div> 
+                        : null}
+                    </StyledContactList>
                 </div>
+            )
+        })
 
-///// end of ternery statement //////
-                } 
-{/* ////end of ternery statement//// */}
+        return (
+            <div id='section4'>
+            <NavList>
+                <ListItem>Business Leads</ListItem>
                 
-              
+            </NavList>
+            {leads}
             </div>
         )
     }
 }
 
-export default ContactList
+export default BusinessLeadsList

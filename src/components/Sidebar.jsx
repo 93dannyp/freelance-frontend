@@ -1,14 +1,12 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import { HashLink as Link } from 'react-router-hash-link';
-import { Router, Route, Switch } from "react-router";
 import { HashLink } from 'react-router-hash-link';
 
 
 
 const SidebarContainer = styled.div`
     height: 100vh;
-    background-color: rgb(70, 70, 70);
+    background-color: rgb(33,38,58);
     color: #fff
     display: flex;
     flex-direction: column;
@@ -82,14 +80,24 @@ class SideBar extends Component {
                             <SidebarMenuItemLabel>Dashboard</SidebarMenuItemLabel>
                         </SidebarMenuItem>
                     </HashLink>
-                    <HashLink smooth to='/api/contacts/#section2'>
+                    <HashLink smooth to='/contacts/#section2'>
                         <SidebarMenuItem>
                             <SidebarMenuItemLabel>Contacts</SidebarMenuItemLabel>
                         </SidebarMenuItem>
                     </HashLink>
-                    <HashLink smooth to='/api/projects/#section3'>
+                    <HashLink smooth to='/projects/#section3'>
                         <SidebarMenuItem>
                             <SidebarMenuItemLabel>Projects</SidebarMenuItemLabel>
+                        </SidebarMenuItem>
+                    </HashLink>
+                    <HashLink smooth to='/businessleads/#section4'>
+                        <SidebarMenuItem>
+                            <SidebarMenuItemLabel>Leads</SidebarMenuItemLabel>
+                        </SidebarMenuItem>
+                    </HashLink>
+                    <HashLink smooth to='/socials/#section5'>
+                        <SidebarMenuItem>
+                            <SidebarMenuItemLabel>Social</SidebarMenuItemLabel>
                         </SidebarMenuItem>
                     </HashLink>
                     <UserAuthItem>

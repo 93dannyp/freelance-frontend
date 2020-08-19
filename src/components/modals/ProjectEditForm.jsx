@@ -35,13 +35,13 @@ class ProjectEditForm extends React.Component {
                 <form onSubmit={(event) => {this.props.updateProject(event, this.state)}}>
 
                     <label htmlFor='projectTitle'></label>
-                    <input type='text' id='projectTitle' name='projectTitle' onChange={this.handleChange} value={this.props.projectBeingEdited.projectTitle} />
+                    <input type='text' id='projectTitle' name='projectTitle' onChange={this.handleChange} value={this.props.projectBeingEdited.projectTitle} /><br/>
 
                     <label htmlFor='projectDescription'></label>
-                    <input type='textarea' rows='3' id='projectDescription' name='projectDescription' onChange={this.handleChange} value={this.props.projectBeingEdited.projectDescription} />
+                    <input type='textarea' rows='3' id='projectDescription' name='projectDescription' onChange={this.handleChange} value={this.props.projectBeingEdited.projectDescription} /><br/>
 
                     <label htmlFor='projectDueDate'></label>
-                    <input type='text' id='projectDueDate' name='projectDueDate' onChange={this.handleChange} value={this.props.projectBeingEdited.projectDueDate} />
+                    <input type='text' id='projectDueDate' name='projectDueDate' onChange={this.handleChange} value={this.props.projectBeingEdited.projectDueDate} /><br/>
 
                     <button type='submit' value='Done'>Done</button>
                 </form>

@@ -35,19 +35,19 @@ class Editform extends React.Component {
                <h2>Edit Contact</h2> 
                 <form onSubmit={(event) => {this.props.updateContact(event, this.state)}}>
                     <label htmlFor='img'></label>
-                    <input type='text' id='img' name='img' onChange={this.handleChange} value={this.state.img} />
+                    <input type='text' id='img' name='img' onChange={this.handleChange} value={this.state.img} /><br/>
 
                     <label htmlFor='firstName'></label>
-                    <input type='text' id='firstName' name='firstName' onChange={this.handleChange} value={this.state.firstName} />
+                    <input type='text' id='firstName' name='firstName' onChange={this.handleChange} value={this.state.firstName} /><br/>
 
                     <label htmlFor='lastName'></label>
-                    <input type='text' id='lastName' name='lastName' onChange={this.handleChange} value={this.state.lastName} />
+                    <input type='text' id='lastName' name='lastName' onChange={this.handleChange} value={this.state.lastName} /><br/>
 
                     <label htmlFor='phoneNumber'></label>
-                    <input type='tel' id='phoneNumber' name='phoneNumber' onChange={this.handleChange} value={this.state.phoneNumber} />
+                    <input type='tel' id='phoneNumber' name='phoneNumber' onChange={this.handleChange} value={this.state.phoneNumber} /><br/>
 
                     <label htmlFor='email'></label>
-                    <input type='email' id='email' name='email' onChange={this.handleChange} value={this.state.email} />
+                    <input type='email' id='email' name='email' onChange={this.handleChange} value={this.state.email} /><br/>
 
                     <button type='submit' value='Done'>Done</button>
                 </form>
