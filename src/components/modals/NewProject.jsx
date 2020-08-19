@@ -53,16 +53,16 @@ handleSubmit = () => {
                     <select as='select' id='contactId' name='contactId' onChange={this.handleChange} value={this.state.contactId} placeholder='Contact'>
                     <option value=''>Choose a contact</option>
                        {options}
-                    </select>
+                    </select><br/>
 
                     <label htmlFor='projectTitle'></label>
-                    <input type='text' id='projectTitle' name='projectTitle' onChange={this.handleChange} value={this.state.projectTitle} placeholder='Title'/>
+                    <input type='text' id='projectTitle' name='projectTitle' onChange={this.handleChange} value={this.state.projectTitle} placeholder='Title'/><br/>
 
                     <label htmlFor='projectDescription'></label>
-                    <input type='textarea' rows='3' id='projectDescription' name='projectDescription' onChange={this.handleChange} value={this.state.projectDescription} placeholder='Description'/>
+                    <input type='textarea' rows='3' id='projectDescription' name='projectDescription' onChange={this.handleChange} value={this.state.projectDescription} placeholder='Description'/><br/>
 
                     <label htmlFor='projectDueDate'></label>
-                    <input type='text' id='projectDueDate' name='projectDueDate' onChange={this.handleChange} value={this.state.projectDueDate} placeholder='Due Date'/>
+                    <input type='text' id='projectDueDate' name='projectDueDate' onChange={this.handleChange} value={this.state.projectDueDate} placeholder='Due Date'/><br/>
 
                     <button type='submit' value='Done'>Done</button>
                 </form>

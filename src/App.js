@@ -27,8 +27,8 @@ class App extends Component {
   state = {
     contacts: [],
     projects: []
-
   }
+
   // Fetching contact data from back end
   getContacts = () => {
         fetch(baseURL + '/api/contacts/')
@@ -132,22 +132,22 @@ deleteProject = (id) => {
         <SideBar className='' id='left'/>
             
       <div className='header' id='section1'>
-        <h2>freelance CRM</h2>
+          <h3>freelance CRM</h3>
         </div>
 <div className='widget-container main'>
-        <div className='widget hide-scrollbar'>
+        <div className='widget hide-scrollbar contacts-color'>
           <ContactList deleteContact={this.deleteContact} handleAddContact={this.handleAddContacts} getContacts={this.getContacts} contacts={this.state.contacts} />
         </div>
 
-        <div className='widget hide-scrollbar'>
+        <div className='widget hide-scrollbar projects-color'>
           <ProjectList  deleteProject={this.deleteProject}contacts={this.state.contacts} projects={this.state.projects}/>
         </div>
 
-        <div className='widget hide-scrollbar'>
+        <div className='widget hide-scrollbar leads-color'>
           <BusinessLeadsList contacts={this.state.contacts}/>
           
         </div>
-        <div className='widget hide-scrollbar'>
+        <div className='widget hide-scrollbar social-color'>
           <TweetList/> 
           
         </div>

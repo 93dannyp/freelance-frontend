@@ -40,7 +40,7 @@ const NavList = styled.ul`
     width: 80%;
     display: flex;
     justify-content: space-between;
-    align: items: baseline;
+    align-items: baseline;
     margin: 0 auto;
     padding: 10px 20px;
 `
@@ -137,24 +137,25 @@ class ContactList extends Component {
     render () {
         return (
             <div id='section2'>
-            {this.state.idOfContactToEdit !== -1 ? <EditForm updateContact={this.updateContact} editContact={this.editContact} idOfContactToEdit={this.state.idOfContactToEdit} contactBeingEdited={this.state.contactBeingEdited} /> : null }
-
-            {this.state.show ? <NewContact baseURL={this.state.baseURL} handleAddContact={this.props.handleAddContact} /> : 
+                <Content>
+                    {this.state.idOfContactToEdit !== -1 ? <EditForm updateContact={this.updateContact} editContact={this.editContact} idOfContactToEdit={this.state.idOfContactToEdit} contactBeingEdited={this.state.contactBeingEdited} /> : null }
+                </Content>
+                {this.state.show ? <NewContact baseURL={this.state.baseURL} handleAddContact={this.props.handleAddContact} /> : 
             <div>
                 <NavList>
-                <ListItem>Contacts</ListItem>
-                <ListItem onClick={ () => {
+                    <ListItem>Contacts</ListItem>
+                    <ListItem onClick={ () => {
                     this.showNewContactForm()
-                }}> + </ListItem>
+                    }}> + </ListItem>
                 </NavList>
                     {this.props.contacts.map(contact => {
                         return (
                             <StyledContactList key={contact.id}>
                                 <Content>
-                                <Image cloudName="dwjdyrkww" src={contact.img} width="70" crop="scale" />
-                                <StyledContactListItems>{contact.firstName} {contact.lastName}</StyledContactListItems>
-                                <StyledContactListItems>{contact.phoneNumber}</StyledContactListItems>
-                                <StyledContactListItems>{contact.email}</StyledContactListItems>
+                                    <Image cloudName="dwjdyrkww" src={contact.img} width="70" crop="scale" />
+                                    <StyledContactListItems>{contact.firstName} {contact.lastName}</StyledContactListItems>
+                                    <StyledContactListItems>{contact.phoneNumber}</StyledContactListItems>
+                                    <StyledContactListItems>{contact.email}</StyledContactListItems>
                                 </Content>
                                 <Utilities>
                                     <button onClick={()=>this.editContact(contact)}>Edit</button>

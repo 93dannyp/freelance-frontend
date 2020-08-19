@@ -7,9 +7,13 @@ body {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  background: rgb(235, 235, 235);
+  background-color: rgb(50,57,89);
+
 }
 
+h2 {
+  color: #fff;
+}
 ul {
   list-style: none;
 }
@@ -18,23 +22,43 @@ li {
   float: left;
 }
  
-a,
-button {
+a {
+  text-decoration: none;
   color: inherit;
 }
  
-a {
-  text-decoration: none;
-}
- 
 button {
-  background: none;
-  cursor: pointer;
+  padding: 8px 10px 8px 10px;
+  border-radius: 5px;
+  background-color: rgba(0,0,0,0.2);
+  color: #fff;
 }
  
 button,
 input {
   border: none;
+  padding: 5px 10px;
+  margin: 5px;
+}
+
+.contacts-color{
+  background-color: rgb(90,196,125);
+}
+
+.projects-color{
+  background-color: rgb(242,173,84);
+}
+
+.leads-color{
+  background-color: rgb(209,81,95);
+}
+
+.social-color{
+  background-color: rgb(29,161,242);
+}
+
+button:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
 .widget-container {
@@ -59,8 +83,11 @@ input {
   flex-shrink: 0;
   display: flex;
   justify-content: space-evenly;
-  margin:0 auto;
+  margin-left: 200px;
+  padding-bottom: 50px;
   color: rgb(56,56,56);
+  font-size: xx-large;
+  color: #fff;
 }
 
 .grid-sidebar {
@@ -72,17 +99,10 @@ input {
   display: none;
 }
 
-.contact-list:hover {
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+.widget:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,1);
 }
 
-.project-list:hover {
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-}
-
-.business-leads-list:hover {
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-}
 
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
@@ -100,7 +120,7 @@ input {
     justify-content: center;
     border-radius: 15px;
     margin: 10px 10px 10px 10px;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.8);
     transition: 0.3s;
     overflow: auto;
     color: #fff;
@@ -123,85 +143,34 @@ input {
     justify-content: center;
     border-radius: 15px;
     margin: 10px 10px 10px 10px;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.8);
     transition: 0.3s;
     overflow: auto;
     color: #fff;
   }
 }
 
-/* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (min-width: 768px) {
-  .main {
-    display: flex;
-    justify-content: space-around;
-    flex-grow: 1; 
-    overflow: auto;
-    margin-left: 200px;
-  }
-  .widget {
-    width: 400px;
-    height: 300px;
-    display: flex;
-    justify-content: center;
-    border-radius: 15px;
-    margin: 10px 10px 10px 10px;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    transition: 0.3s;
-    overflow: auto;
-    color: #fff;
-  }
-} 
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
-  .main {
-    display: flex;
-    justify-content: flex-start;
-    flex-grow: 1; 
-    overflow: auto;
-    margin-left: 200px;
-  }
+  
   .widget {
     width: 400px;
     height: 300px;
-    display: flex;
-    justify-content: center;
-    border-radius: 15px;
-    margin: 10px 10px 10px 10px;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    transition: 0.3s;
-    overflow: auto;
-    color: #fff;
   }
 } 
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
-  .main {
-    display: flex;
-    justify-content: flex-start;
-    flex-grow: 1; 
-    overflow: auto;
-    margin-left: 200px;
-  }
   .widget {
-    width: 400px;
-    height: 300px;
-    display: flex;
-    justify-content: center;
-    border-radius: 15px;
-    margin: 10px 10px 10px 10px;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    transition: 0.3s;
-    overflow: auto;
-    color: #fff;
+    width: 500px;
+    height: 375px;
   }
 }
 
-.backgrounds{
-  background-color: rgb(249, 255, 144);
-  background-color: rgb(249, 123, 123);
-  background-color: rgb(196, 196, 250);
-
+@media only screen and (min-width: 1400px) {
+  .widget {
+    width: 600px;
+    height: 450px;
+  }
 }

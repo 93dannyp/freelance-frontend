@@ -14,7 +14,7 @@ const StyledContactList = styled.ul`
     display: flex;
     justify-content: space-between;
     background: rgba(240,240,240, .5);
-    color: rgb(56,56,56);
+    color: #fff;
     margin: 5px auto;
     border-radius: 10px;
 `
@@ -108,7 +108,12 @@ class BusinessLeadsList extends Component {
                         </div>
                         {contact.lead ?
                         <div>
+                            <Utilities>
+                                    <button onClick={()=>this.editContact(contact)}>Edit</button>
+                                    <button onClick={()=>this.props.deleteContact(contact.id)}>X</button>
+                            </Utilities>
                             <h5>{contact.firstName} {contact.lastName}</h5>
+                            <h5>{contact.company}</h5>
                             <h5>{contact.phoneNumber}</h5>
                             <h5>{contact.email}</h5>
                             <h5>{contact.notes}</h5>
@@ -121,10 +126,12 @@ class BusinessLeadsList extends Component {
         })
 
         return (
-            
-            <div>
-                <h1>Business Leads</h1>
-                <div>{leads}</div>
+            <div id='section4'>
+            <NavList>
+                <ListItem>Business Leads</ListItem>
+                
+            </NavList>
+            {leads}
             </div>
         )
     }
