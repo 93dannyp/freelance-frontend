@@ -125,8 +125,7 @@ class ProjectList extends Component {
         })
     }
 
-    updateProject = (event, project) => {
-        event.preventDefault()
+    updateProject = (project) => {
         console.log(project)
         console.log('updated project,', project)
         fetch(baseURL + '/api/projects/' + project.id, {

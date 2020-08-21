@@ -11,12 +11,14 @@ class NewProject extends React.Component {
     }
 
 handleChange = (event) => {
+    event.preventDefault()
     this.setState({
         [event.currentTarget.id]: event.currentTarget.value
     })
 }
 
 handleSubmit = () => {
+    event.preventDefault()
     fetch(this.props.baseURL + '/api/projects/', {
         crossDomain: true,
         method: 'POST',

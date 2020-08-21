@@ -73,8 +73,7 @@ class BusinessLeadsList extends Component {
         })
     }
 
-    updateContact = (event, contact) => {
-        event.preventDefault()
+    updateContact = (contact) => {
         console.log(contact)
         console.log('updated contact,', contact)
         fetch(baseURL + '/api/contacts/' + contact.id, {

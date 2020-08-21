@@ -17,6 +17,7 @@ class NewContact extends React.Component {
     }
 
 handleChange = (event) => {
+    event.preventDefault()
     this.setState({
         [event.currentTarget.name]: event.currentTarget.value
     })
