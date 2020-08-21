@@ -10,8 +10,7 @@ import SideBar from './components/Sidebar'
 
 
 // const baseURL = process.env.REACT_APP_baseURL || 'http://localhost:3003' 
-// const baseURL = 'https://freelance-backend.herokuapp.com' || 'http://localhost:3003'
-const baseURL = 'http://localhost:3003'
+const baseURL = 'https://freelance-backend.herokuapp.com' || 'http://localhost:3003'
 
 // TODO make sure this logic works with connecting baseURL
 //  if (process.env.NODE_ENV === 'development') {
@@ -116,7 +115,6 @@ deleteProject = (id) => {
       this.setState({projects: copyProjects})
   })
 }
-
 
     componentDidMount(){
       this.getContacts()

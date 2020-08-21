@@ -2,12 +2,10 @@ import React from 'react'
 
 class ProjectEditForm extends React.Component {
     state = {
-        id: this.props.projectBeingEdited.id,
-        firstName: this.props.projectBeingEdited.firstName,
-        lastName: this.props.projectBeingEdited.lastName,
-        phoneNumber: this.props.projectBeingEdited.phoneNumber,
-        email: this.props.projectBeingEdited.email,
-        img: this.props.projectBeingEdited.img,
+        projectTitle: '',
+        projectDescription: '',
+        projectDueDate: '',
+        contactId: ''
     }
 
     handleChange = (event) => {

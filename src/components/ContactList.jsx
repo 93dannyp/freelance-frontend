@@ -5,7 +5,8 @@ import styled from 'styled-components'
 import {Image, Transformation, CloudinaryContext} from 'cloudinary-react';
 
 
-const baseURL = 'http://localhost:3003' || process.env.REACT_APP_baseURL
+// const baseURL = 'http://localhost:3003' || process.env.REACT_APP_baseURL
+const baseURL = 'https://freelance-backend.herokuapp.com' || 'http://localhost:3003'
 
 
 const StyledContactList = styled.ul`
@@ -97,6 +98,7 @@ class ContactList extends Component {
     }
 
     updateContact = (event, contact) => {
+        event.preventDefault()
         console.log(contact)
         console.log('updated contact,', contact)
         fetch(baseURL + '/api/contacts/' + contact.id, {

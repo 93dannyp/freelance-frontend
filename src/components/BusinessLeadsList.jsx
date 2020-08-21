@@ -31,7 +31,7 @@ const Content = styled.div`
 `
 const Utilities = styled.div`
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: flex-start;
 `
 const NavList = styled.ul`
@@ -74,6 +74,7 @@ class BusinessLeadsList extends Component {
     }
 
     updateContact = (event, contact) => {
+        event.preventDefault()
         console.log(contact)
         console.log('updated contact,', contact)
         fetch(baseURL + '/api/contacts/' + contact.id, {
@@ -109,15 +110,18 @@ class BusinessLeadsList extends Component {
                         {contact.lead ?
                         <div>
                             <Utilities>
+                            <h4>{contact.firstName} {contact.lastName}</h4>
+                            <div>
                                     <button onClick={()=>this.editContact(contact)}>Edit</button>
                                     <button onClick={()=>this.props.deleteContact(contact.id)}>X</button>
+                                    </div>
                             </Utilities>
-                            <h5>{contact.firstName} {contact.lastName}</h5>
-                            <h5>{contact.company}</h5>
-                            <h5>{contact.phoneNumber}</h5>
-                            <h5>{contact.email}</h5>
-                            <h5>{contact.notes}</h5>
-                            <h5>{contact.createdAt} since you last contacted this lead!</h5>
+                            
+                            <p>{contact.company}</p>
+                            <p>{contact.phoneNumber}</p>
+                            <p>{contact.email}</p>
+                            <p>{contact.notes}</p>
+                            <p>{contact.createdAt} since you last contacted this lead!</p>
                         </div> 
                         : null}
                     </StyledContactList>

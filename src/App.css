@@ -41,6 +41,10 @@ input {
   margin: 5px;
 }
 
+img {
+  border-radius: 8px;
+}
+
 .contacts-color{
   background-color: rgb(90,196,125);
 }
@@ -102,6 +106,7 @@ button:hover {
 .widget:hover {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,1);
 }
+
 
 
 /* Extra small devices (phones, 600px and down) */

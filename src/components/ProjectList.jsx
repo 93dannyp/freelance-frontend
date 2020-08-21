@@ -82,8 +82,9 @@ const ListItem = styled.li`
     font-size: 25px;
     font-weight: 500;
 `
+const baseURL = 'https://freelance-backend.herokuapp.com' || 'http://localhost:3003'
 
-const baseURL = 'http://localhost:3003'
+// const baseURL = 'http://localhost:3003'
 
 class ProjectList extends Component {
     state = {
@@ -125,6 +126,7 @@ class ProjectList extends Component {
     }
 
     updateProject = (event, project) => {
+        event.preventDefault()
         console.log(project)
         console.log('updated project,', project)
         fetch(baseURL + '/api/projects/' + project.id, {
