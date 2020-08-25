@@ -42,6 +42,20 @@ class App extends Component {
             })
         })
     }
+
+       // fetching project data from back end
+       getProjects = () => {
+        fetch(baseURL + '/api/projects/')
+        .then(
+            data => {
+                return data.json()
+            })
+        .then(data => {
+            this.setState({
+                projects: data,
+            })
+        })
+    }
     
     // adding contact data to contacts array
     // setting state to new array that contains contact data
@@ -55,19 +69,7 @@ class App extends Component {
       })
   }
 
-    // fetching project data from back end
-    getProjects = () => {
-      fetch(baseURL + '/api/projects/')
-      .then(
-          data => {
-              return data.json()
-          })
-      .then(data => {
-          this.setState({
-              projects: data,
-          })
-      })
-  }
+ 
 
     // adding project data to projects array
     // setting state to new array that contains project data
@@ -134,11 +136,11 @@ deleteProject = (id) => {
         </div>
 <div className='widget-container main'>
         <div className='widget hide-scrollbar contacts-color'>
-          <ContactList deleteContact={this.deleteContact} handleAddContact={this.handleAddContacts} getContacts={this.getContacts} contacts={this.state.contacts} />
+          <ContactList deleteContact={this.deleteContact} handleAddContact={this.handleAddContact} getContacts={this.getContacts} contacts={this.state.contacts} />
         </div>
 
         <div className='widget hide-scrollbar projects-color'>
-          <ProjectList  deleteProject={this.deleteProject}contacts={this.state.contacts} projects={this.state.projects}/>
+          <ProjectList  deleteProject={this.deleteProject} contacts={this.state.contacts} projects={this.state.projects}/>
         </div>
 
         <div className='widget hide-scrollbar leads-color'>

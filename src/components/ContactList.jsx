@@ -58,7 +58,8 @@ class ContactList extends Component {
         show: false,
         baseURL: baseURL,
         contactBeingEdited: null,
-        idOfContactToEdit: -1
+        projectBeingEdited: null,
+        idOfContactToEdit: -1,
     }
 
     // getContacts = () => {
@@ -97,7 +98,8 @@ class ContactList extends Component {
         })
     }
 
-    updateContact = (contact) => {
+    updateContact = (event, contact) => {
+        event.preventDefault()
         console.log(contact)
         console.log('updated contact,', contact)
         fetch(baseURL + '/api/contacts/' + contact.id, {

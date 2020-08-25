@@ -17,7 +17,7 @@ class NewContact extends React.Component {
     }
 
 handleChange = (event) => {
-    event.preventDefault()
+    
     this.setState({
         [event.currentTarget.name]: event.currentTarget.value
     })
@@ -52,19 +52,15 @@ handleSubmit = (event) => {
 }
 
 showWidget = () => {
-    console.log(widget)
     widget.open()
 }
 
 checkImageUpload = (result) => {
     if (result.event === "success") { 
-        console.log(result.info)
         this.setState({
             img: result.info.secure_url,
             // url: resultEvent.info.secure_url
         })
-        console.log('Done! Here is the image info: ', result.info)
-        // push photo into contacts array here and set state to new array
       }
 }
 

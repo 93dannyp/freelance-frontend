@@ -5,6 +5,7 @@ import styled from 'styled-components'
 
 const baseURL = 'http://localhost:3003' || process.env.REACT_APP_baseURL
 
+let leads;
 
 const StyledContactList = styled.ul`
     width: 90%;
@@ -73,7 +74,8 @@ class BusinessLeadsList extends Component {
         })
     }
 
-    updateContact = (contact) => {
+    updateContact = (event, contact) => {
+        event.preventDefault()
         console.log(contact)
         console.log('updated contact,', contact)
         fetch(baseURL + '/api/contacts/' + contact.id, {
@@ -99,7 +101,9 @@ class BusinessLeadsList extends Component {
     }
  
     render () {
-        const leads = this.props.contacts.map((contact, index)=>{
+        if (this.props.contacts) {
+        console.log(this.props.contacts)
+         leads = this.props.contacts.map((contact, index)=>{
             return (
                 <div value={contact.id}  key={index}>
                     <StyledContactList>
@@ -127,7 +131,7 @@ class BusinessLeadsList extends Component {
                 </div>
             )
         })
-
+    }
         return (
             <div id='section4'>
             <NavList>

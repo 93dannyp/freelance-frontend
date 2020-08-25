@@ -12,7 +12,7 @@ class Editform extends React.Component {
     }
 
     handleChange = (event) => {
-        event.preventDefault()
+        
         this.setState({
             [event.currentTarget.id]: event.currentTarget.value
         })

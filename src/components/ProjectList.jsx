@@ -125,7 +125,8 @@ class ProjectList extends Component {
         })
     }
 
-    updateProject = (project) => {
+    updateProject = (event, project) => {
+        event.preventDefault()
         console.log(project)
         console.log('updated project,', project)
         fetch(baseURL + '/api/projects/' + project.id, {
@@ -167,7 +168,8 @@ class ProjectList extends Component {
                             </div>
                                 <div>
                                 <Utilities>
-                                    <button onClick={()=>this.editProject(project)}>Edit</button>
+                                    {/* TODO fix edit button */}
+                                    {/* <button onClick={()=>this.editProject(project)}>Edit</button> */}
                                     <button onClick={()=>this.props.deleteProject(project.id)}>X</button>
                                 </Utilities>
                                 </div>
