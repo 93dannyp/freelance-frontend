@@ -31,8 +31,8 @@ class TweetList extends Component {
             <StyledTweetContainer>
             <TwitterTimelineEmbed
             sourceType="profile"
-            screenName="93dannyp"
-            options={{height: 400}}
+            screenName="wired"
+            options={{height: 300}}
           />
           </StyledTweetContainer>
           </div>
