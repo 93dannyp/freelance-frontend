@@ -47,8 +47,9 @@ handleSubmit = (event) => {
             img: '',
             lead: false,
             notes: '',
+            show: false
         })
-    }).catch(error => console.error({'Error': error}))
+    }).then(data => {this.props.getContacts()}).catch(error => console.error({'Error': error}))
 }
 
 showWidget = () => {

@@ -144,7 +144,7 @@ deleteProject = (id) => {
         </div>
 
         <div className='widget hide-scrollbar leads-color'>
-          <BusinessLeadsList contacts={this.state.contacts}/>
+          <BusinessLeadsList contacts={this.state.contacts} deleteContact={this.deleteContact}/>
           
         </div>
         <div className='widget hide-scrollbar social-color'>

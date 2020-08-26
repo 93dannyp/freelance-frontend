@@ -130,7 +130,7 @@ class ContactList extends Component {
                 <Content>
                     {this.state.idOfContactToEdit !== -1 ? <EditForm updateContact={this.updateContact} editContact={this.editContact} idOfContactToEdit={this.state.idOfContactToEdit} contactBeingEdited={this.state.contactBeingEdited} /> : null }
                 </Content>
-                {this.state.show ? <NewContact baseURL={this.state.baseURL} handleAddContact={this.props.handleAddContact} /> : 
+                {this.state.show ? <NewContact baseURL={this.state.baseURL} handleAddContact={this.props.handleAddContact} getContacts={this.props.getContacts} showNewContactForm={this.showNewContactForm} show={this.state.show}/> : 
             <div>
                 <NavList>
                     <ListItem>Contacts</ListItem>

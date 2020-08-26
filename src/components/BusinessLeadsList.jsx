@@ -105,6 +105,7 @@ class BusinessLeadsList extends Component {
         console.log(this.props.contacts)
          leads = this.props.contacts.map((contact, index)=>{
             return (
+                <div>{this.props.contacts[this.props.contacts.length -1] !== undefined ?  
                 <div value={contact.id}  key={index}>
                     <StyledContactList>
                         <div>
@@ -129,6 +130,7 @@ class BusinessLeadsList extends Component {
                         : null}
                     </StyledContactList>
                 </div>
+            : null}</div>
             )
         })
     }
