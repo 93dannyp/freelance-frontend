@@ -53,6 +53,14 @@ const ListItem = styled.li`
     font-weight: 500;
 `
 
+const AddButton = styled.div`
+    padding: 4px 10px 8px 10px;
+    border-radius: 5px;
+    background-color: rgba(0,0,0,0.2);
+    color: #fff;   
+    font-sixe: small;
+`
+
 class ContactList extends Component {
     state = {
         show: false,
@@ -62,33 +70,11 @@ class ContactList extends Component {
         idOfContactToEdit: -1,
     }
 
-    // getContacts = () => {
-    //     fetch(baseURL + '/api/contacts/')
-    //     .then(
-    //         data => {
-    //             return data.json()
-    //         })
-    //     .then(data => {
-    //         this.setState({
-    //             contacts: data,
-    //         })
-    //     })
-    // }
-
     showNewContactForm = () => {
         this.setState({
             show: !this.state.show,
         })
     }
-
-    // handleAddContact = (contact) => {
-    //     const copyContacts = [...this.state.contacts]
-    //     copyContacts.unshift(contact)
-    //     this.setState({
-    //         contacts: copyContacts,
-    //         show: false
-    //     })
-    // }
 
     editContact = (contact) => {
         console.log(contact)
@@ -136,7 +122,7 @@ class ContactList extends Component {
                     <ListItem>Contacts</ListItem>
                     <ListItem onClick={ () => {
                     this.showNewContactForm()
-                    }}> Create + </ListItem>
+                    }}> <AddButton> + </AddButton></ListItem>
                 </NavList>
                     {this.props.contacts.map(contact => {
                         return (

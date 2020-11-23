@@ -23,8 +23,7 @@ handleChange = (event) => {
     })
 }
 
-handleSubmit = (event) => {
-    // event.preventDefault();
+handleSubmit = () => {
     fetch(this.props.baseURL + '/api/contacts/', {
         crossDomain: true,
         method: 'POST',
@@ -60,7 +59,6 @@ checkImageUpload = (result) => {
     if (result.event === "success") { 
         this.setState({
             img: result.info.secure_url,
-            // url: resultEvent.info.secure_url
         })
       }
 }

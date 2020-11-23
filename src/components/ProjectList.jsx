@@ -82,6 +82,13 @@ const ListItem = styled.li`
     font-size: 25px;
     font-weight: 500;
 `
+const AddButton = styled.div`
+    padding: 4px 10px 8px 10px;
+    border-radius: 5px;
+    background-color: rgba(0,0,0,0.2);
+    color: #fff;   
+    font-sixe: small;
+`
 const baseURL = 'https://freelance-backend.herokuapp.com' || 'http://localhost:3003'
 
 // const baseURL = 'http://localhost:3003'
@@ -194,7 +201,7 @@ class ProjectList extends Component {
                     <ListItem >Projects</ListItem>
                     <ListItem onClick={ () => {
                     this.showNewProjectForm()
-                }}>+</ListItem>    
+                }}><AddButton> + </AddButton></ListItem>    
                 </NavList>
                     {this.state.showNewProject ? <NewProject contacts={this.props.contacts} baseURL={this.state.baseURL} handleAddProject={this.handleAddProject}/> : <div>{projectsByContact} </div> }                
                 </div>
