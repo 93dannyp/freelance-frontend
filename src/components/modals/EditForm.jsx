@@ -26,7 +26,6 @@ class Editform extends React.Component {
     //         email: this.props.contactBeingEdited.email,
     //         img: this.props.contactBeingEdited.img,
     //     })
-        
     // }
 
     render () {
