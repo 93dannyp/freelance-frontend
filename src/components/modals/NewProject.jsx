@@ -18,7 +18,7 @@ handleChange = (event) => {
 }
 
 handleSubmit = (event) => {
-    event.preventDefault()
+    // event.preventDefault()
     fetch(this.props.baseURL + '/api/projects/', {
         crossDomain: true,
         method: 'POST',

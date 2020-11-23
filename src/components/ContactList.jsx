@@ -136,7 +136,7 @@ class ContactList extends Component {
                     <ListItem>Contacts</ListItem>
                     <ListItem onClick={ () => {
                     this.showNewContactForm()
-                    }}> + </ListItem>
+                    }}> Create + </ListItem>
                 </NavList>
                     {this.props.contacts.map(contact => {
                         return (
