@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import NewContact from './modals/NewContact'
 import EditForm from './modals/EditForm'
 import styled from 'styled-components'
-import {Image, Transformation, CloudinaryContext} from 'cloudinary-react';
+import { Image } from 'cloudinary-react'
 
 
 // for development
@@ -94,18 +94,18 @@ class ContactList extends Component {
                 'Content-Type': 'application/json'
             }
         })
-        .then((data)=>{
-            console.log(data)
+        .then((data) => {
             return data.json()
-        }).then(data => {
+        })
+        .then(data => {
             this.props.handleAddContact(data)
             this.setState({
                 idOfContactToEdit: -1,
                 contacts: data,
             })
         })
-        .catch((err) => {
-            console.log(err)
+        .catch((error) => {
+            console.log(error)
         })
     }
  
@@ -113,39 +113,64 @@ class ContactList extends Component {
         return (
             <div id='section2'>
                 <Content>
-                    {this.state.idOfContactToEdit !== -1 ? <EditForm updateContact={this.updateContact} editContact={this.editContact} idOfContactToEdit={this.state.idOfContactToEdit} contactBeingEdited={this.state.contactBeingEdited} /> : null }
+                    {this.state.idOfContactToEdit !== -1 ? 
+                    <EditForm 
+                        updateContact={this.updateContact} 
+                        editContact={this.editContact} 
+                        idOfContactToEdit={this.state.idOfContactToEdit} 
+                        contactBeingEdited={this.state.contactBeingEdited} /> 
+                        : null }
                 </Content>
-                {this.state.show ? <NewContact 
-                baseURL={this.state.baseURL} 
-                handleAddContact={this.props.handleAddContact} 
-                getContacts={this.props.getContacts} 
-                showNewContactForm={this.showNewContactForm} 
-                show={this.state.show}/> : 
-            <div>
-                <NavList>
-                    <ListItem>Contacts</ListItem>
-                    <ListItem onClick={ () => {
-                    this.showNewContactForm()
-                    }}> <AddButton> + </AddButton></ListItem>
-                </NavList>
-                    {this.props.contacts.map(contact => {
-                        return (
-                            <StyledContactList key={contact.id}>
-                                <Content>
-                                    <Image cloudName="dwjdyrkww" src={contact.img} width="70" crop="scale" />
-                                    <StyledContactListItems>{contact.firstName} {contact.lastName}</StyledContactListItems>
-                                    <StyledContactListItems>{contact.phoneNumber}</StyledContactListItems>
-                                    <StyledContactListItems>{contact.email}</StyledContactListItems>
-                                </Content>
-                                <Utilities>
-                                    <button onClick={()=>this.editContact(contact)}>Edit</button>
-                                    <button onClick={()=>this.props.deleteContact(contact.id)}>X</button>
-                                </Utilities>
-                            </StyledContactList>
-                        )
-                    })}
-                </div>
-                } 
+                { this.state.show ? 
+                    <NewContact 
+                        baseURL={this.state.baseURL} 
+                        handleAddContact={this.props.handleAddContact} 
+                        getContacts={this.props.getContacts} 
+                        showNewContactForm={this.showNewContactForm} 
+                        show={this.state.show}/> : 
+                    <div>
+                        <NavList>
+                            <ListItem>Contacts</ListItem>
+                            <ListItem 
+                                onClick={()=>{this.showNewContactForm()}}> 
+                                <AddButton> + </AddButton>
+                            </ListItem>
+                        </NavList>
+                            { this.props.contacts.map(contact => {
+                                return (
+                                    <StyledContactList 
+                                        key={contact.id}>
+                                        <Content>
+                                            <Image 
+                                                cloudName="dwjdyrkww" 
+                                                src={contact.img} 
+                                                width="70" 
+                                                crop="scale" />
+                                            <StyledContactListItems>
+                                                {contact.firstName} {contact.lastName}
+                                            </StyledContactListItems>
+                                            <StyledContactListItems>
+                                                {contact.phoneNumber}
+                                            </StyledContactListItems>
+                                            <StyledContactListItems>
+                                                {contact.email}
+                                            </StyledContactListItems>
+                                        </Content>
+                                        <Utilities>
+                                            <button 
+                                            onClick={()=>this.editContact(contact)}>
+                                                Edit
+                                            </button>
+                                            <button 
+                                            onClick={()=>this.props.deleteContact(contact.id)}>
+                                                X
+                                            </button>
+                                        </Utilities>
+                                    </StyledContactList>
+                                )}
+                            )}
+                    </div>
+                }
             </div>
         )
     }

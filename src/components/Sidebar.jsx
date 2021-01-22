@@ -72,41 +72,43 @@ const UserAuthLabel = styled.div`
 
 class SideBar extends Component {
     render () {
-        return <>
-            <SidebarContainer>
-                <SidebarMenu>
-                    <HashLink smooth to='/#section1'>
-                        <SidebarMenuItem>
-                            <SidebarMenuItemLabel>Dashboard</SidebarMenuItemLabel>
-                        </SidebarMenuItem>
-                    </HashLink>
-                    <HashLink smooth to='/contacts/#section2'>
-                        <SidebarMenuItem>
-                            <SidebarMenuItemLabel>Contacts</SidebarMenuItemLabel>
-                        </SidebarMenuItem>
-                    </HashLink>
-                    <HashLink smooth to='/projects/#section3'>
-                        <SidebarMenuItem>
-                            <SidebarMenuItemLabel>Projects</SidebarMenuItemLabel>
-                        </SidebarMenuItem>
-                    </HashLink>
-                    <HashLink smooth to='/businessleads/#section4'>
-                        <SidebarMenuItem>
-                            <SidebarMenuItemLabel>Leads</SidebarMenuItemLabel>
-                        </SidebarMenuItem>
-                    </HashLink>
-                    <HashLink smooth to='/socials/#section5'>
-                        <SidebarMenuItem>
-                            <SidebarMenuItemLabel>Social</SidebarMenuItemLabel>
-                        </SidebarMenuItem>
-                    </HashLink>
-                    <UserAuthItem>
-                        <UserAuthLabel>Login</UserAuthLabel>
-                        <UserAuthLabel>Sign Out</UserAuthLabel>
-                    </UserAuthItem>
-                </SidebarMenu>
-            </SidebarContainer>
-        </>
+        return (
+            <div>
+                <SidebarContainer>
+                    <SidebarMenu>
+                        <HashLink smooth to='/#section1'>
+                            <SidebarMenuItem>
+                                <SidebarMenuItemLabel>Dashboard</SidebarMenuItemLabel>
+                            </SidebarMenuItem>
+                        </HashLink>
+                        <HashLink smooth to='/contacts/#section2'>
+                            <SidebarMenuItem>
+                                <SidebarMenuItemLabel>Contacts</SidebarMenuItemLabel>
+                            </SidebarMenuItem>
+                        </HashLink>
+                        <HashLink smooth to='/projects/#section3'>
+                            <SidebarMenuItem>
+                                <SidebarMenuItemLabel>Projects</SidebarMenuItemLabel>
+                            </SidebarMenuItem>
+                        </HashLink>
+                        <HashLink smooth to='/businessleads/#section4'>
+                            <SidebarMenuItem>
+                                <SidebarMenuItemLabel>Leads</SidebarMenuItemLabel>
+                            </SidebarMenuItem>
+                        </HashLink>
+                        <HashLink smooth to='/socials/#section5'>
+                            <SidebarMenuItem>
+                                <SidebarMenuItemLabel>Social</SidebarMenuItemLabel>
+                            </SidebarMenuItem>
+                        </HashLink>
+                        <UserAuthItem>
+                            <UserAuthLabel>Login</UserAuthLabel>
+                            <UserAuthLabel>Sign Out</UserAuthLabel>
+                        </UserAuthItem>
+                    </SidebarMenu>
+                </SidebarContainer>
+            </div>
+        )
     }
 }
 

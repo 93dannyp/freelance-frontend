@@ -50,7 +50,6 @@ class BusinessLeadsList extends Component {
     }
 
     editContact = (contact) => {
-        
         this.setState({
             contactBeingEdited: contact,
             idOfContactToEdit: contact.id
@@ -59,13 +58,12 @@ class BusinessLeadsList extends Component {
  
     render () {
         if (this.props.contacts) {
-         leads = this.props.contacts.map((contact, index)=>{
+         leads = this.props.contacts.map((contact, index) => {
             return (
-                <div>{this.props.contacts[this.props.contacts.length -1] !== undefined ?  
-                <div value={contact.id} key={index}>
+                <div value={contact.id} key={index}>{this.props.contacts[this.props.contacts.length -1] ?  
+                <div>
                     <StyledContactList>
                         <div>
-                            
                         </div>
                         {contact.lead ?
                         <div>
@@ -73,37 +71,31 @@ class BusinessLeadsList extends Component {
                                 <h4>{contact.firstName} {contact.lastName}</h4>
                                 <div>
                                     <button 
-                                    onClick={()=>this.editContact(contact)}>
-                                        Edit
-                                    </button>
-                                    <button 
-                                    onClick={()=>this.props.
-                                    deleteContact(contact.id)}>
+                                        onClick={()=>this.props.deleteContact(contact.id)}>
                                         X
                                     </button>
                                 </div>
                             </Utilities>
-                            
                             <p>{contact.company}</p>
                             <p>{contact.phoneNumber}</p>
                             <p>{contact.email}</p>
                             <p>{contact.notes}</p>
                             <p>{contact.createdAt} since you last contacted this lead!</p>
-                        </div> 
-                        : <div>There was an error.</div> }
+                        </div>
+                        : null }
                     </StyledContactList>
                 </div>
-            : null }</div>
+            : null }
+            </div>
             )
         })
     }
         return (
             <div id='section4'>
-            <NavList>
-                <ListItem>Business Leads</ListItem>
-                
-            </NavList>
-            {leads}
+                <NavList>
+                    <ListItem>Business Leads</ListItem>
+                </NavList>
+                {leads}
             </div>
         )
     }

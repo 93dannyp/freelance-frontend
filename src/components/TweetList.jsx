@@ -25,17 +25,16 @@ class TweetList extends Component {
     render () {
         return (
             <div id='section5'>
-            <NavList>
-                <ListItem>Social</ListItem>
-            </NavList>
-            <StyledTweetContainer>
-            <TwitterTimelineEmbed
-            sourceType="profile"
-            screenName="wired"
-            options={{height: 300}}
-          />
-          </StyledTweetContainer>
-          </div>
+                <NavList>
+                    <ListItem>Social</ListItem>
+                </NavList>
+                <StyledTweetContainer>
+                    <TwitterTimelineEmbed
+                        sourceType="profile"
+                        screenName="wired"
+                        options={{height: 300}}/>
+                </StyledTweetContainer>
+            </div>
         )
     }
 }

@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import NewProject from './modals/NewProject'
-import ProjectEditForm from './modals/ProjectEditForm'
 import styled from 'styled-components'
 
 const StyledContactList = styled.ul`
@@ -28,22 +27,6 @@ const StyledContactListItems = styled.li`
 const StyledTitle = styled.h5`
     margin: 0;
     padding: 0;
-`
-
-const StyledProjectCard = styled.div`
-    display: flex;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    background: rgba(240,240,240, .8);
-    color: #fff;
-    border-radius: 10px;
-`
-const StyledProjectContent = styled.div`
-    display: flex;
-    padding: 10px 20px;
-    color: rgb(56,56,56);
-    margin: 5px 0;
-    transition: 0.3s
 `
 const Content = styled.div`
     display: flex;
@@ -107,10 +90,8 @@ class ProjectList extends Component {
     handleAddProject = (project) => {
         const copyProjects = [...this.state.projects]
         copyProjects.unshift(project)
-        
         this.setState({
             projects: copyProjects,
-            // show: false
         })
     }
 
@@ -120,82 +101,52 @@ class ProjectList extends Component {
         })
     }
 
-    editProject = (project) => {
-        console.log(project)
-        this.setState({
-            projectBeingEdited: project,
-            idOfProjectToEdit: project.id
-        })
-    }
-
-    updateProject = (event, project) => {
-        event.preventDefault()
-        console.log(project)
-        console.log('updated project,', project)
-        fetch(baseURL + '/api/projects/' + project.id, {
-            method: 'PUT',
-            body: JSON.stringify(project),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-        .then((data)=>{
-            console.log(data.dataValues)
-            return data.json()
-        }).then(data => {
-            this.handleAddContact(data)
-            this.setState({
-                idOfProjectToEdit: -1,
-                projects: data,
-            })
-        })
-        .catch((err) => {
-            console.log(err)
-        })
-    }
-
     render () {
-        const projectsByContact = this.props.projects.map((project, index)=>{
+        const projectsByContact = this.props.projects.map((project, index) => {
             return (
-            <div value={project.contactId}  key={index}>
+            <div 
+                value={project.contactId} 
+                key={index}>
                     <StyledContactList>
                         <StyledContactListItems>
                             <NavDiv>
-                            <div>
-                                <StyledTitle>{project.projectTitle}</StyledTitle>
-                                <small>Due: {project.projectDueDate}</small>
-                            </div>
                                 <div>
-                                <Utilities>
-                                    {/* TODO fix edit button */}
-                                    {/* <button onClick={()=>this.editProject(project)}>Edit</button> */}
-                                    <button onClick={()=>this.props.deleteProject(project.id)}>X</button>
-                                </Utilities>
+                                    <StyledTitle>{project.projectTitle}</StyledTitle>
+                                    <small>Due: {project.projectDueDate}</small>
                                 </div>
+                                <Utilities>
+                                    <button 
+                                        onClick={()=>this.props.deleteProject(project.id)}>
+                                        X
+                                    </button>
+                                </Utilities>
                             </NavDiv>
-                           
                             <Content>
                                 <p>{project.projectDescription}</p>  
                             </Content>    
                         </StyledContactListItems>
-                        </StyledContactList>
+                    </StyledContactList>
                 </div>
             )
         })
 
         return (
             <div id='section3'>
-                <Content>
-                    {this.state.idOfProjectToEdit !== -1 ? <ProjectEditForm updateProject={this.updateProject} editProject={this.editProject} idOfProjectToEdit={this.state.idOfProjectToEdit} projectBeingEdited={this.state.projectBeingEdited} /> : null }
-                </Content>
                 <div>
-                <NavList>
-                    <ListItem >Projects</ListItem>
-                    <ListItem onClick={ () => {
-                    this.showNewProjectForm()
-                }}><AddButton> + </AddButton></ListItem>    
-                </NavList>
-                    {this.state.showNewProject ? <NewProject contacts={this.props.contacts} baseURL={this.state.baseURL} handleAddProject={this.handleAddProject}/> : <div>{projectsByContact} </div> }                
+                    <NavList>
+                        <ListItem>Projects</ListItem>
+                        <ListItem 
+                            onClick={()=>{this.showNewProjectForm()}}>
+                            <AddButton>
+                                + 
+                            </AddButton>
+                        </ListItem>    
+                    </NavList>
+                    { this.state.showNewProject ? 
+                    <NewProject 
+                    contacts={this.props.contacts} 
+                    handleAddProject={this.handleAddProject}/> 
+                    : <div>{projectsByContact}</div> }                
                 </div>
             </div>
         )
