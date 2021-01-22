@@ -1,6 +1,11 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 
+// for development
+// const baseURL = 'http://localhost:3003' 
+
+// for production
+const baseURL = 'https://freelance-backend.herokuapp.com'
 
 class NewProject extends React.Component {
     state = {
@@ -17,7 +22,7 @@ handleChange = (event) => {
 }
 
 handleSubmit = () => {
-    fetch(this.props.baseURL + '/api/projects/', {
+    fetch(baseURL + '/api/projects/', {
         crossDomain: true,
         method: 'POST',
         body: JSON.stringify(this.state),

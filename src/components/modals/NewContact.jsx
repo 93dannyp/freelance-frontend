@@ -4,6 +4,12 @@ import {Image, Transformation, CloudinaryContext} from 'cloudinary-react';
 
 let widget
 
+// for development
+// const baseURL = 'http://localhost:3003' 
+
+// for production
+const baseURL = 'https://freelance-backend.herokuapp.com'
+
 class NewContact extends React.Component {
     state = {
         firstName: '',
@@ -17,14 +23,13 @@ class NewContact extends React.Component {
     }
 
 handleChange = (event) => {
-    
     this.setState({
         [event.currentTarget.name]: event.currentTarget.value
     })
 }
 
 handleSubmit = () => {
-    fetch(this.props.baseURL + '/api/contacts/', {
+    fetch(baseURL + '/api/contacts/', {
         crossDomain: true,
         method: 'POST',
         headers: {
@@ -104,7 +109,7 @@ checkImageUpload = (result) => {
                     <label htmlFor='lead'>Business Lead
                     <input type='checkbox' id='lead' name='lead' checked={this.state.lead} onChange={(e)=>{this.handleCheck(e)}}/></label><br/>
 
-                    <button type='submit' value='Done' onClick={(e)=>{this.showNewContactForm(e)}}>Done </button>
+                    <button type='submit' value='Done' >Done </button>
                 </form>
             </div>
         )
@@ -112,3 +117,5 @@ checkImageUpload = (result) => {
 }
 
 export default NewContact
+
+// onClick={(e)=>{this.showNewContactForm(e)}}

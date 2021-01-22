@@ -1,9 +1,5 @@
 import React, { Component } from 'react'
-import NewContact from './modals/NewContact'
-import EditForm from './modals/EditForm'
 import styled from 'styled-components'
-
-const baseURL = 'http://localhost:3003' || process.env.REACT_APP_baseURL
 
 let leads;
 
@@ -18,17 +14,6 @@ const StyledContactList = styled.ul`
     color: #fff;
     margin: 5px auto;
     border-radius: 10px;
-`
-const StyledContactListItems = styled.li`
-    display: flex;
-    padding: 10px 20px;
-    color: rgb(56,56,56);
-    margin: 5px 0;
-    transition: 0.3s
-`
-const Content = styled.div`
-    display: flex;
-    flex-wrap: wrap;
 `
 const Utilities = styled.div`
     display: flex;
@@ -54,7 +39,6 @@ const ListItem = styled.li`
 class BusinessLeadsList extends Component {
     state = {
         show: false,
-        baseURL: baseURL,
         contactBeingEdited: null,
         idOfContactToEdit: -1
     }
@@ -72,35 +56,12 @@ class BusinessLeadsList extends Component {
             idOfContactToEdit: contact.id
         })
     }
-
-    updateContact = (contact) => { 
-        fetch(baseURL + '/api/contacts/' + contact.id, {
-            method: 'PUT',
-            body: JSON.stringify(contact),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-        .then((data)=>{
-            console.log(data.dataValues)
-            return data.json()
-        }).then(data => {
-            this.props.handleAddContact(data)
-            this.setState({
-                idOfContactToEdit: -1,
-                contacts: data,
-            })
-        })
-        .catch((err) => {
-            console.log(err)
-        })
-    }
  
     render () {
         if (this.props.contacts) {
          leads = this.props.contacts.map((contact, index)=>{
             return (
-                <div>{this.props.contacts[this.props.contacts.length -1] !== null ?  
+                <div>{this.props.contacts[this.props.contacts.length -1] !== undefined ?  
                 <div value={contact.id} key={index}>
                     <StyledContactList>
                         <div>
@@ -129,7 +90,7 @@ class BusinessLeadsList extends Component {
                             <p>{contact.notes}</p>
                             <p>{contact.createdAt} since you last contacted this lead!</p>
                         </div> 
-                        : null }
+                        : <div>There was an error.</div> }
                     </StyledContactList>
                 </div>
             : null }</div>

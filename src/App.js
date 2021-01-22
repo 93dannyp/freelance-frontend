@@ -6,11 +6,11 @@ import BusinessLeadsList from './components/BusinessLeadsList';
 import TweetList from './components/TweetList'
 import SideBar from './components/Sidebar'
 
+// for development
+// const baseURL = 'http://localhost:3003' 
 
-
-
-const baseURL = process.env.REACT_APP_baseURL || 'http://localhost:3003' 
-// const baseURL = 'https://freelance-backend.herokuapp.com' || 'http://localhost:3003'
+// for production
+const baseURL = 'https://freelance-backend.herokuapp.com'
 
 class App extends Component {
   state = {

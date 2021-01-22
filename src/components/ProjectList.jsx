@@ -88,9 +88,11 @@ const AddButton = styled.div`
     color: #fff;   
     font-sixe: small;
 `
-// const baseURL = 'https://freelance-backend.herokuapp.com' || 'http://localhost:3003'
+// for development
+// const baseURL = 'http://localhost:3003' 
 
-const baseURL = 'http://localhost:3003'
+// for production
+const baseURL = 'https://freelance-backend.herokuapp.com'
 
 class ProjectList extends Component {
     state = {
