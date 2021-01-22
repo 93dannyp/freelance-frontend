@@ -1,6 +1,5 @@
 import React from 'react'
 
-
 class Editform extends React.Component {
     state = {
         id: this.props.contactBeingEdited.id,
@@ -12,27 +11,16 @@ class Editform extends React.Component {
     }
 
     handleChange = (event) => {
-        
         this.setState({
             [event.currentTarget.id]: event.currentTarget.value
         })
     }
 
-    // componentDidMount() {
-    //     this.setState({
-    //         firstName: this.props.contactBeingEdited.firstName,
-    //         lastName: this.props.contactBeingEdited.lastName,
-    //         phoneNumber: this.props.contactBeingEdited.phoneNumber,
-    //         email: this.props.contactBeingEdited.email,
-    //         img: this.props.contactBeingEdited.img,
-    //     })
-    // }
-
     render () {
         return (
             <div>
                <h2>Edit Contact</h2> 
-                <form onSubmit={(event) => {this.props.updateContact(event, this.state)}}>
+                <form onSubmit={() => {this.props.updateContact(this.state)}}>
                     <label htmlFor='img'></label>
                     <input type='text' id='img' name='img' onChange={this.handleChange} value={this.state.img} /><br/>
 

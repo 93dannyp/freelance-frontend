@@ -51,7 +51,6 @@ const ListItem = styled.li`
     font-weight: 500;
 `
 
-
 class BusinessLeadsList extends Component {
     state = {
         show: false,
@@ -67,17 +66,14 @@ class BusinessLeadsList extends Component {
     }
 
     editContact = (contact) => {
-        console.log(contact)
+        
         this.setState({
             contactBeingEdited: contact,
             idOfContactToEdit: contact.id
         })
     }
 
-    updateContact = (event, contact) => {
-        event.preventDefault()
-        console.log(contact)
-        console.log('updated contact,', contact)
+    updateContact = (contact) => { 
         fetch(baseURL + '/api/contacts/' + contact.id, {
             method: 'PUT',
             body: JSON.stringify(contact),
@@ -102,11 +98,10 @@ class BusinessLeadsList extends Component {
  
     render () {
         if (this.props.contacts) {
-        console.log(this.props.contacts)
          leads = this.props.contacts.map((contact, index)=>{
             return (
-                <div>{this.props.contacts[this.props.contacts.length -1] !== undefined ?  
-                <div value={contact.id}  key={index}>
+                <div>{this.props.contacts[this.props.contacts.length -1] !== null ?  
+                <div value={contact.id} key={index}>
                     <StyledContactList>
                         <div>
                             
@@ -114,11 +109,18 @@ class BusinessLeadsList extends Component {
                         {contact.lead ?
                         <div>
                             <Utilities>
-                            <h4>{contact.firstName} {contact.lastName}</h4>
-                            <div>
-                                    <button onClick={()=>this.editContact(contact)}>Edit</button>
-                                    <button onClick={()=>this.props.deleteContact(contact.id)}>X</button>
-                                    </div>
+                                <h4>{contact.firstName} {contact.lastName}</h4>
+                                <div>
+                                    <button 
+                                    onClick={()=>this.editContact(contact)}>
+                                        Edit
+                                    </button>
+                                    <button 
+                                    onClick={()=>this.props.
+                                    deleteContact(contact.id)}>
+                                        X
+                                    </button>
+                                </div>
                             </Utilities>
                             
                             <p>{contact.company}</p>
@@ -127,10 +129,10 @@ class BusinessLeadsList extends Component {
                             <p>{contact.notes}</p>
                             <p>{contact.createdAt} since you last contacted this lead!</p>
                         </div> 
-                        : null}
+                        : null }
                     </StyledContactList>
                 </div>
-            : null}</div>
+            : null }</div>
             )
         })
     }

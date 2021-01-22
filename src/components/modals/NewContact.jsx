@@ -60,7 +60,7 @@ checkImageUpload = (result) => {
         this.setState({
             img: result.info.secure_url,
         })
-      }
+    }
 }
 
     handleCheck = (event) => {
@@ -104,7 +104,7 @@ checkImageUpload = (result) => {
                     <label htmlFor='lead'>Business Lead
                     <input type='checkbox' id='lead' name='lead' checked={this.state.lead} onChange={(e)=>{this.handleCheck(e)}}/></label><br/>
 
-                    <button type='submit' value='Done'>Done </button>
+                    <button type='submit' value='Done' onClick={(e)=>{this.showNewContactForm(e)}}>Done </button>
                 </form>
             </div>
         )

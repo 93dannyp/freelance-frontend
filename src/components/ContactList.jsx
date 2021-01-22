@@ -5,8 +5,8 @@ import styled from 'styled-components'
 import {Image, Transformation, CloudinaryContext} from 'cloudinary-react';
 
 
-// const baseURL = 'http://localhost:3003' || process.env.REACT_APP_baseURL
-const baseURL = 'https://freelance-backend.herokuapp.com' || 'http://localhost:3003'
+const baseURL = 'http://localhost:3003' || process.env.REACT_APP_baseURL
+// const baseURL = 'https://freelance-backend.herokuapp.com' || 'http://localhost:3003'
 
 
 const StyledContactList = styled.ul`
@@ -77,26 +77,23 @@ class ContactList extends Component {
     }
 
     editContact = (contact) => {
-        console.log(contact)
         this.setState({
             contactBeingEdited: contact,
             idOfContactToEdit: contact.id
         })
     }
 
-    updateContact = (event, contact) => {
-        event.preventDefault()
-        console.log(contact)
-        console.log('updated contact,', contact)
+    updateContact = (contact) => {
+        // console.log(contact)
         fetch(baseURL + '/api/contacts/' + contact.id, {
             method: 'PUT',
-            body: JSON.stringify(contact),
+            body: JSON.stringify(contact), // was JSON.stringify(contact)
             headers: {
                 'Content-Type': 'application/json'
             }
         })
         .then((data)=>{
-            console.log(data.dataValues)
+            console.log(data)
             return data.json()
         }).then(data => {
             this.props.handleAddContact(data)
@@ -116,7 +113,12 @@ class ContactList extends Component {
                 <Content>
                     {this.state.idOfContactToEdit !== -1 ? <EditForm updateContact={this.updateContact} editContact={this.editContact} idOfContactToEdit={this.state.idOfContactToEdit} contactBeingEdited={this.state.contactBeingEdited} /> : null }
                 </Content>
-                {this.state.show ? <NewContact baseURL={this.state.baseURL} handleAddContact={this.props.handleAddContact} getContacts={this.props.getContacts} showNewContactForm={this.showNewContactForm} show={this.state.show}/> : 
+                {this.state.show ? <NewContact 
+                baseURL={this.state.baseURL} 
+                handleAddContact={this.props.handleAddContact} 
+                getContacts={this.props.getContacts} 
+                showNewContactForm={this.showNewContactForm} 
+                show={this.state.show}/> : 
             <div>
                 <NavList>
                     <ListItem>Contacts</ListItem>
@@ -141,12 +143,7 @@ class ContactList extends Component {
                         )
                     })}
                 </div>
-
-///// end of ternery statement //////
                 } 
-{/* ////end of ternery statement//// */}
-                
-              
             </div>
         )
     }

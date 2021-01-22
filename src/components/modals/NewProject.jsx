@@ -11,7 +11,6 @@ class NewProject extends React.Component {
     }
 
 handleChange = (event) => {
-    
     this.setState({
         [event.currentTarget.id]: event.currentTarget.value
     })
@@ -21,12 +20,12 @@ handleSubmit = () => {
     fetch(this.props.baseURL + '/api/projects/', {
         crossDomain: true,
         method: 'POST',
+        body: JSON.stringify(this.state),
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(this.state),
-        
-    }).then((res) => {
+    })
+    .then((res) => {
         res.json()
     })
     .then(resJson => {
@@ -36,11 +35,11 @@ handleSubmit = () => {
             projectDescription: '',
             projectDueDate: '',
         })
-    }).catch(error => console.error({'Error': error}))
+    })
+    .catch(error => console.error({'Error': error}))
 }
 
     render () {
-
         const options = this.props.contacts.map((contact, index)=>{
             return (
                 <option value={contact.id}  key={index}> {contact.firstName} {contact.lastName}</option>

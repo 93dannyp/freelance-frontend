@@ -48,7 +48,6 @@ const StyledProjectContent = styled.div`
 const Content = styled.div`
     display: flex;
     flex-wrap: wrap;
-    
 `
 const Utilities = styled.div`
     display: flex;
@@ -89,9 +88,9 @@ const AddButton = styled.div`
     color: #fff;   
     font-sixe: small;
 `
-const baseURL = 'https://freelance-backend.herokuapp.com' || 'http://localhost:3003'
+// const baseURL = 'https://freelance-backend.herokuapp.com' || 'http://localhost:3003'
 
-// const baseURL = 'http://localhost:3003'
+const baseURL = 'http://localhost:3003'
 
 class ProjectList extends Component {
     state = {
@@ -102,11 +101,6 @@ class ProjectList extends Component {
         idOfProjectToEdit: -1,
         showNewProject: false,
     }
-    // arrangeProjectByContact = () => {
-    //     this.setState({
-    //         arrangeByContact: !this.state.arrangeByContact,
-    //     })
-    // }
 
     handleAddProject = (project) => {
         const copyProjects = [...this.state.projects]
@@ -156,10 +150,6 @@ class ProjectList extends Component {
         .catch((err) => {
             console.log(err)
         })
-    }
-
-    componentDidMount(){
-
     }
 
     render () {
