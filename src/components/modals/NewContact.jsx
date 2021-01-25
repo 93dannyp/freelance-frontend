@@ -6,7 +6,15 @@ let widget
 // const baseURL = 'http://localhost:3003' 
 
 // for production
-const baseURL = 'https://freelance-backend.herokuapp.com'
+// const baseURL = 'https://freelance-backend.herokuapp.com'
+
+let baseURL
+if (process.env.NODE_ENV === 'development') {
+  baseURL = 'http://localhost:3003'
+} else {
+  baseURL = 'https://freelance-backend.herokuapp.com'
+}
+console.log('Current base URL:', baseURL)
 
 class NewContact extends React.Component {
     state = {
