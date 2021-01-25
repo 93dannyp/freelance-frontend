@@ -71,25 +71,11 @@ const AddButton = styled.div`
     color: #fff;   
     font-sixe: small;
 `
-// for development
-// const baseURL = 'http://localhost:3003' 
-
-// for production
-// const baseURL = 'https://freelance-backend.herokuapp.com'
-
-let baseURL
-if (process.env.NODE_ENV === 'development') {
-  baseURL = 'http://localhost:3003'
-} else {
-  baseURL = 'https://freelance-backend.herokuapp.com'
-}
-console.log('Current base URL:', baseURL)
 
 class ProjectList extends Component {
     state = {
         projects: [],
         arrangeByContact: false,
-        baseURL: baseURL,
         projectBeingEdited: null,
         idOfProjectToEdit: -1,
         showNewProject: false,
@@ -152,6 +138,7 @@ class ProjectList extends Component {
                     </NavList>
                     { this.state.showNewProject ? 
                     <NewProject 
+                    baseURL={this.props.baseURL}
                     contacts={this.props.contacts} 
                     handleAddProject={this.handleAddProject}/> 
                     : <div>{projectsByContact}</div> }                

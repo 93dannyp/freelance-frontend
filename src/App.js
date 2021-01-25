@@ -6,12 +6,6 @@ import BusinessLeadsList from './components/BusinessLeadsList';
 import TweetList from './components/TweetList'
 import SideBar from './components/Sidebar'
 
-// for development
-// const baseURL = 'http://localhost:3003' 
-
-// for production
-// const baseURL = 'https://freelance-backend.herokuapp.com'
-
 let baseURL
 if (process.env.NODE_ENV === 'development') {
   baseURL = 'http://localhost:3003'
@@ -24,11 +18,12 @@ class App extends Component {
   state = {
     contacts: [],
     projects: [],
+    baseURL: baseURL
   }
 
   // fetching contact data from back end
   getContacts = () => {
-    fetch(baseURL + '/api/contacts/')
+    fetch(this.state.baseURL + '/api/contacts/')
       .then(
         data => {
           return data.json()
@@ -43,7 +38,7 @@ class App extends Component {
 
   // fetching project data from back end
   getProjects = () => {
-  fetch(baseURL + '/api/projects/')
+  fetch(this.state.baseURL + '/api/projects/')
   .then(
       data => {
           return data.json()
@@ -63,7 +58,7 @@ class App extends Component {
     copyContacts.sort()
     this.setState({
         contacts: copyContacts,
-        show: false
+        // show: false
     })
   }
 
@@ -79,9 +74,7 @@ class App extends Component {
   }
 
   deleteContact = (id) => {
-    console.log(baseURL)
-    console.log(id)
-    fetch(baseURL + '/api/contacts/' + id, {
+    fetch(this.state.baseURL + '/api/contacts/' + id, {
         crossDomain: true,
         method: 'DELETE',
         headers: {
@@ -89,7 +82,6 @@ class App extends Component {
         },
     })
     .then(res => {
-        console.log(res)
         const findIndex = this.state.contacts.findIndex(contact => contact.id === id)
         const copyContacts = [...this.state.contacts]
         copyContacts.splice(findIndex, 1)
@@ -98,9 +90,7 @@ class App extends Component {
   }
 
   deleteProject = (id) => {
-    console.log(baseURL)
-    console.log(id)
-    fetch(baseURL + '/api/projects/' + id, {
+    fetch(this.state.baseURL + '/api/projects/' + id, {
         crossDomain: true,
         method: 'DELETE',
         headers: {
@@ -133,6 +123,7 @@ class App extends Component {
             <div className='widget-container main'>
               <div className='widget hide-scrollbar contacts-color'>
                 <ContactList 
+                baseURL={this.state.baseURL}
                 deleteContact={this.deleteContact} 
                 handleAddContact={this.handleAddContact} 
                 getContacts={this.getContacts} 
@@ -140,6 +131,7 @@ class App extends Component {
               </div>
               <div className='widget hide-scrollbar projects-color'>
                 <ProjectList
+                  baseURL={this.state.baseURL}
                   deleteProject={this.deleteProject}
                   handleAddProject={this.handleAddProject}
                   getProjects={this.getProjects} 
