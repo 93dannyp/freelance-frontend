@@ -1,19 +1,5 @@
 import React from 'react'
 
-// for development
-// const baseURL = 'http://localhost:3003' 
-
-// for production
-// const baseURL = 'https://freelance-backend.herokuapp.com'
-
-let baseURL
-if (process.env.NODE_ENV === 'development') {
-  baseURL = 'http://localhost:3003'
-} else {
-  baseURL = 'https://freelance-backend.herokuapp.com'
-}
-console.log('Current base URL:', baseURL)
-
 class NewProject extends React.Component {
     state = {
         projectTitle: '',
@@ -29,7 +15,7 @@ class NewProject extends React.Component {
     }
 
     handleSubmit = () => {
-        fetch(baseURL + '/api/projects/', {
+        fetch(this.props.baseURL + '/api/projects/', {
             crossDomain: true,
             method: 'POST',
             body: JSON.stringify(this.state),
@@ -38,7 +24,6 @@ class NewProject extends React.Component {
             },
         })
         .then((res) => {
-            console.log(res)
             res.json()
         })
         .then(resJson => {

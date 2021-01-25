@@ -4,21 +4,6 @@ import EditForm from './modals/EditForm'
 import styled from 'styled-components'
 import { Image } from 'cloudinary-react'
 
-
-// for development
-// const baseURL = 'http://localhost:3003' 
-
-// for production
-// const baseURL = 'https://freelance-backend.herokuapp.com'
-
-let baseURL
-if (process.env.NODE_ENV === 'development') {
-  baseURL = 'http://localhost:3003'
-} else {
-  baseURL = 'https://freelance-backend.herokuapp.com'
-}
-console.log('Current base URL:', baseURL)
-
 const StyledContactList = styled.ul`
     width: 90%;
     margin: 50px;
@@ -74,7 +59,6 @@ const AddButton = styled.div`
 class ContactList extends Component {
     state = {
         show: false,
-        baseURL: baseURL,
         contactBeingEdited: null,
         projectBeingEdited: null,
         idOfContactToEdit: -1,
@@ -94,7 +78,7 @@ class ContactList extends Component {
     }
 
     updateContact = (contact) => {
-        fetch(baseURL + '/api/contacts/' + contact.id, {
+        fetch(this.props.baseURL + '/api/contacts/' + contact.id, {
             method: 'PUT',
             body: JSON.stringify(contact),
             headers: {
@@ -130,7 +114,7 @@ class ContactList extends Component {
                 </Content>
                 { this.state.show ? 
                     <NewContact 
-                        baseURL={this.state.baseURL} 
+                        baseURL={this.props.baseURL} 
                         handleAddContact={this.props.handleAddContact} 
                         getContacts={this.props.getContacts} 
                         showNewContactForm={this.showNewContactForm} 
